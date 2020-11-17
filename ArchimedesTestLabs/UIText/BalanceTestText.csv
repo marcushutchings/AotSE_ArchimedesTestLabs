@@ -18,7 +18,9 @@ BalanceTest_Button_FinishActiveTest,"Cleanup the current test"
 BalanceTest_Victory,"Simulation System Complete..."
 
 BalanceTest_Button_ZeusVsSubT1Test,"Zeus Vs Substrate Frigates"
+BalanceTest_Button_AthenaVsSubT1Test,"Athena Vs Substrate Frigates"
 BalanceTest_Button_AvengerVsSubT1Test,"Avenger Vs PHC Frigates"
+BalanceTest_Button_MaulerVsSubT1Test,"Mauler Vs PHC Frigates"
 BalanceTest_Button_ZeusVsAvengerTest,"Zeus Vs Avenger"
 BalanceTest_Button_ZeusVsMaulerTest,"Zeus Vs Mauler"
 BalanceTest_Button_AthenaVsMaulerTest,"Athena Vs Mauler"
@@ -27,8 +29,12 @@ BalanceTest_Button_Exit,"Exit the testing"
 
 BalanceTest_Obj_ZeusVsSubT1,Zeus vs Substrate T1
 BalanceTest_Obj_ZeusVsSubT1_Failed,Zeus vs Substrate T1 (failed)
+BalanceTest_Obj_AthenaVsSubT1,Athena vs Substrate T1
+BalanceTest_Obj_AthenaVsSubT1_Failed,Athena vs Substrate T1 (failed)
 BalanceTest_Obj_AvengerVsSubT1,Avenger vs PHC T1
 BalanceTest_Obj_AvengerVsSubT1_Failed,Avenger vs PHC T1 (failed)
+BalanceTest_Obj_MaulerVsSubT1,Mauler vs PHC T1
+BalanceTest_Obj_MaulerVsSubT1_Failed,Mauler vs PHC T1 (failed)
 BalanceTest_Obj_ZeusVsAvenger,Zeus vs Avenger
 BalanceTest_Obj_ZeusVsMauler,Zeus vs Mauler
 BalanceTest_Obj_ZeusVsMauler_Failed,Zeus vs Mauler (failed)
