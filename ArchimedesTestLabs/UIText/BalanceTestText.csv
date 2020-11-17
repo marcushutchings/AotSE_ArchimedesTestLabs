@@ -4,33 +4,35 @@ ScenarioBalanceTest_Description,A specially designed scenario to test in-game ba
 ScenarioBalanceTest_Synopsis,Archimedes evaluates the relative efffectiveness of Cruisers.
 
 BalanceTest_Player,"Archimedes"
-BalanceTest_Player_AI_1,"Test System Alpha"
-BalanceTest_Player_AI_2,"Test System Beta"
-BalanceTest_Player_AI_3,"Test System Omega"
+BalanceTest_Player_AI_1,"System Alpha"
+BalanceTest_Player_AI_2,"System Beta"
+BalanceTest_Player_AI_3,"System Omega"
 Player_Neutrals,Neutrals
 
-BalanceTest_BasicIntro_01a,"Let's see whether my modifications to our units perform in accordence with their designated parameters. System Omega, prepare the field for the experiments and ensure the failsafes are initialized... this time."
-
+BalanceTest_BasicIntro_01a,"Let's see whether my modifications to our units perform in accordence with their designated parameters. System Omega, prepare the field for the experiments and, this time, ensure the failsafes are initialized."
 BalanceTest_SelectTest,"Let's see. Which test shall I run?"
+BalanceTest_FailedResult,"Interesting... That is not inline with my predictions."
+BalanceTest_ExpectedResult,"Excellent! The results are inline with my predictions."
+BalanceTest_SelectCleanup,"Once I have finished analysing the results of this test, System Omega, clean up this mess."
+BalanceTest_Button_FinishActiveTest,"Cleanup the current test"
+BalanceTest_Victory,"Simulation System Complete..."
 
 BalanceTest_Button_ZeusVsSubT1Test,"Zeus Vs Substrate Frigates"
 BalanceTest_Button_AvengerVsSubT1Test,"Avenger Vs PHC Frigates"
+BalanceTest_Button_ZeusVsAvengerTest,"Zeus Vs Avenger"
 BalanceTest_Button_ZeusVsMaulerTest,"Zeus Vs Mauler"
 BalanceTest_Button_AthenaVsMaulerTest,"Athena Vs Mauler"
+BalanceTest_Button_AthenaVsAvengerTest,"Athena Vs Avenger"
 BalanceTest_Button_Exit,"Exit the testing"
-
-BalanceTest_FailedResult,"Interesting... That is not inline with my expectations."
-BalanceTest_ExpectedResult,"Excellent! The results are inline with my predictions."
-BalanceTest_SelectCleanup,"Once I have finished analysing the results of this test, System Omega, clean up this mess."
-BalanceTest_Button_FinishActiveTest,"Cleanup the current test."
-
-BalanceTest_Victory,"Simulation System Complete..."
 
 BalanceTest_Obj_ZeusVsSubT1,Zeus vs Substrate T1
 BalanceTest_Obj_ZeusVsSubT1_Failed,Zeus vs Substrate T1 (failed)
 BalanceTest_Obj_AvengerVsSubT1,Avenger vs PHC T1
 BalanceTest_Obj_AvengerVsSubT1_Failed,Avenger vs PHC T1 (failed)
+BalanceTest_Obj_ZeusVsAvenger,Zeus vs Avenger
 BalanceTest_Obj_ZeusVsMauler,Zeus vs Mauler
 BalanceTest_Obj_ZeusVsMauler_Failed,Zeus vs Mauler (failed)
+BalanceTest_Obj_AthenaVsAvenger,Athena vs Avenger
+BalanceTest_Obj_AthenaVsAvenger_Failed,Athena vs Avenger (failed)
 BalanceTest_Obj_AthenaVsMauler,Athena Vs Mauler
 
