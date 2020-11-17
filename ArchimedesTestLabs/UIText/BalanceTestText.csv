@@ -1,0 +1,30 @@
+Key,Translated String
+ScenarioBalanceTest_Title,Balance Test
+ScenarioBalanceTest_Description,A specially designed scenario to test in-game balance
+ScenarioBalanceTest_Synopsis,This is not a proper scenario in the usual sense. Use this scenario to aid future patches in balance changes.
+
+BalanceTest_Player,"Archimedes"
+BalanceTest_Player_AI_1,"Test System Alpha"
+BalanceTest_Player_AI_2,"Test System Beta"
+BalanceTest_Player_AI_3,"Test System Omega"
+Player_Neutrals,Neutrals
+
+BalanceTest_BasicIntro_01a,"Let's see whether my modifications to our units perform in accordence with their designated parameters."
+
+BalanceTest_SelectTest,"Let's see. Which test shall I run now?"
+
+BalanceTest_Button_ZeusVsSubT1Test,"Zeus Vs Substrate Frigates"
+BalanceTest_Button_AvengerVsSubT1Test,"Avenger Vs PHC Frigates"
+BalanceTest_Button_Exit,"Exit the testing"
+
+BalanceTest_FailedResult,"Blast it! I may have make some further modifications it would seem."
+BalanceTest_ExpectedResult,"Excellent! The results are inline with my predictions."
+BalanceTest_SelectCleanup,"Once I have finished analysing the results of this test, System Omega, clean up this mess."
+BalanceTest_Button_FinishActiveTest,"Cleanup the current test."
+
+BalanceTest_Victory,"Simulation System Complete..."
+
+BalanceTest_Obj_ZeusVsSubT1,Zeus Beats Substrate T1
+BalanceTest_Obj_ZeusVsSubT1_Failed,Zeus Beats Substrate T1 (failed)
+BalanceTest_Obj_AvengerVsSubT1,Avenger Beats PHC T1
+BalanceTest_Obj_AvengerVsSubT1_Failed,Avenger Beats PHC T1 (failed)

@@ -1,0 +1,240 @@
+<Mission Title="ScenarioBalanceTest_Title" Description="ScenarioBalanceTest_Description" Map="Basic Tutorial" 
+    Synopsis="ScenarioBalanceTest_Synopsis"
+    ImageBig="UI/Art/Ascendancy/AscendancyMissionImages/AscendancyGalaxy.dds"
+    ImageRadius="0.8"
+    PlanetPosition="0.1,0.1"
+    EnableCreeps="0"
+    Notifications="false"
+    HideTerrain="0"
+    HideDifficulty="1"
+	BuildSpeed="VeryFast"
+	CaptureSpeed="Fast"
+    NoSeedVictory="0"
+	>
+
+<!-- REGION LOCATIONS
+
+A   -4544,4576
+B   -2848,4800
+C   -1440,4544
+D   160,3072
+E   1088,4544
+F   2368,3424
+G   2272,1600
+H   2144,192
+I   1760,-1216
+J   352,-1600
+K   -1312,-1728
+L   -1824,-320
+M   -1056,832
+N   -3008,1632
+O   -4992,2336
+
+TODOS
+
+	* Add a failsafe
+	* Counter for tests maybe?
+	* Update message
+	* Tidy up first test references
+	* Clean up army references
+	* Clean up remaining references
+	* Setup scenario properly
+	
+	* Add more tests
+	
+	* Make more test scenarios
+
+-->
+
+<!-- PLAYER SETUP -->
+
+    <Player Name="BalanceTest_Player"  Faction="PHC" Team="0" Color="0" AIType="Player"   NoSeed="1" NoEngineer="1" StartLocation="0"/>
+    <Player Name="BalanceTest_Player_AI_1"  Faction="PHC" Team="1" Color="1" AIType="Off"   NoSeed="1" NoEngineer="1" StartLocation="0"/>
+	<Player Name="BalanceTest_Player_AI_2"  Faction="PHC" Team="2" Color="2" AIType="Off"   NoSeed="1" NoEngineer="1" StartLocation="0"/>
+	<Player Name="BalanceTest_Player_AI_3"  Faction="PHC" Team="3" Color="7" AIType="Off"   NoSeed="1" NoEngineer="1" StartLocation="0"/>
+
+<!-- RESTRICT BUILDINGS/UNITS/ORBITALS -->
+
+    <Trigger ID="tInitialSetup_Restrictions" Type="Timer" Timer="0" >
+		<Var Name="vTestSetup_Probe"  Operation="=" Value="0" />
+		<Var Name="vTestFailed_Probe"  Operation="=" Value="0" />
+		<Var Name="vTestSucceeded_Probe"  Operation="=" Value="0" />
+		<Var Name="vTestCleanup_Probe"  Operation="=" Value="0" />
+		
+		<Restrict Type="Unit"     ID="All"  Enable="0" />
+        <Restrict Type="Building" ID="All"  Enable="0" />
+		<Restrict Type="Research" ID="All"  Enable="0" />
+		<Restrict Type="Orbital"  ID="All"  Enable="0" />
+		
+        <ActivateTrigger Target="tOpeningDialogue" />
+    </Trigger>
+	
+    <Trigger Name="tOpeningDialogue" Type="Timer" Timer="1" Inactive="1" >
+		<GrantStuff Player="0" Logistics="5000" />
+		<Camera Position="-3000,1586" Speed="1" Snap="0" />
+		<Reveal Name="Reveal_Base" Position="-3000,1586" Size="3000" Enable="1" />
+        <Dialog> 
+            <Entry Icon="Archimedes" Text="BalanceTest_BasicIntro_01a" />
+        </Dialog>
+		<ActivateTrigger Target="tReclaimTestNode" />
+    </Trigger>
+	
+	<!-- Main Menu -->
+	<Trigger Name="tMainMenu" Type="Timer" Timer="1" Inactive="1" >
+		<Var Name="vTestSetup_Probe"  Operation="=" Value="0" />
+		<Var Name="vTestFailed_Probe"  Operation="=" Value="0" />
+		<Var Name="vTestSucceeded_Probe"  Operation="=" Value="0" />
+		<Var Name="vTestCleanup_Probe"  Operation="=" Value="0" />
+		
+		<ActivateTrigger Target="BalanceTest_ZeusVsSubT1_Trigger" />
+		<ActivateTrigger Target="tTest2Button" />
+		
+		<Dialog>
+			<Entry Icon="Narrator" Text="BalanceTest_SelectTest" >
+				<Choice Text="BalanceTest_Button_ZeusVsSubT1Test" Id="cTest1" />
+				<Choice Text="BalanceTest_Button_AvengerVsSubT1Test" Id="cTest2" />
+				<Choice Text="BalanceTest_Button_Exit" Id="cExitSimulation" />
+			</Entry>
+		</Dialog>
+	</Trigger>
+	
+	<Trigger Name="BalanceTest_Exit" Type="DialogChoice" Choice="cExitSimulation">
+		<EndMission Victory="1" String="BalanceTest_Victory" />
+	</Trigger>
+	
+	<Trigger Name="BalanceTest_ZeusVsSubT1_Trigger" Type="DialogChoice" Choice="cTest1" Inactive="1" >
+		<ActivateTrigger Target="tTest1Start" />
+		<ActivateTrigger Target="tSetupAndStartTest" />
+	</Trigger>
+	
+	<Trigger Name="tTest2Button" Type="DialogChoice" Choice="cTest2" Inactive="1" >
+		<ActivateTrigger Target="tTest2Start" />
+		<ActivateTrigger Target="tSetupAndStartTest" />
+	</Trigger>
+	
+	
+	<!-- Standard Test Functions -->
+	<Trigger Name="tSetupAndStartTest" Type="Timer" Timer="1" Inactive="1" >
+		<ActivateTrigger Target="tTestFails" />
+		<ActivateTrigger Target="tTestSucceeds" />
+		<Var Name="vTestSetup_Probe"  Operation="=" Value="1" />
+	</Trigger>
+	
+	<Trigger Name="tTestFails" Type="ZoneCapture" Owner="2" Position="-3000,1586" Inactive="1" >
+		<Dialog>
+			<Entry Icon="Narrator" Text="BalanceTest_FailedResult"  />
+		</Dialog>
+		<Var Name="vTestFailed_Probe"  Operation="=" Value="1" />
+		<ActivateTrigger Target="tReviewResultBeforeClean" />
+	</Trigger>
+	
+	<Trigger Name="tTestSucceeds" Type="ZoneCapture" Owner="1" Position="-3000,1586" Inactive="1" >
+		<Dialog>
+			<Entry Icon="Narrator" Text="BalanceTest_ExpectedResult"  />
+		</Dialog>
+		<Var Name="vTestSucceeded_Probe"  Operation="=" Value="1" />
+		<ActivateTrigger Target="tReviewResultBeforeClean" />
+	</Trigger>
+	
+	<Trigger Name="tReviewResultBeforeClean" Type="Timer" Timer="1" Inactive="1" >
+		<ActivateTrigger Target="tCleanUpTest" />
+		<Dialog>
+			<Entry Icon="Narrator" Text="BalanceTest_SelectCleanup" >
+				<Choice Text="BalanceTest_Button_FinishActiveTest" Id="cCleanUpTest" />
+			</Entry>
+		</Dialog>
+	</Trigger>
+	
+	<Trigger Name="tCleanUpTest" Type="DialogChoice" Choice="cCleanUpTest" Inactive="1" >
+		<ActivateTrigger Target="tReclaimTestNode" />
+		<Var Name="vTestCleanup_Probe"  Operation="=" Value="1" />
+	</Trigger>
+	
+	<Trigger Name="tReclaimTestNode" Type="Timer" Timer="1" Inactive="1">
+		<ActivateTrigger Target="tReclaimComplete" />
+		<SpawnUnit Name="Reclaimer" Template="PHC_1_Hermes" Player="3" Position="-3000,1586,0" />
+		<CaptureNearest Name="Reclaimer" Repeat="0" />
+	</Trigger>
+	
+	<Trigger Name="tReclaimComplete" Type="ZoneCapture" Owner="3" Position="-3000,1586" Inactive="1" >
+		<DestroyUnit Name="Reclaimer" />
+		<ActivateTrigger Target="tMainMenu" />
+	</Trigger>
+	
+	
+	<!-- Test 01 -->
+	<Trigger Name="tTest1Start" Type="Var" Var="vTestSetup_Probe" Operator="==" Value="1" Inactive="1" >
+		<Objective Name="ZeusVsSubT1"  String="BalanceTest_Obj_ZeusVsSubT1" SetCheck="false" />
+		<ActivateTrigger Target="tTest1Fails" />
+		<ActivateTrigger Target="tTest1Succeeds" />
+		<ActivateTrigger Target="tCleanUpTest1" />
+		<ActivateTrigger Target="BalanceTest_ZeusVsSubT1_Spawn" />
+	</Trigger>
+	
+	<Trigger Name="BalanceTest_ZeusVsSubT1_Spawn" Type="Timer" Timer="1" Inactive="1" >
+		<SpawnUnit Name="DefenceLeader" Template="PHC_2_Zeus" Player="1" Position="-2000,1086,0" />
+		<SpawnUnit Name="AttackLeader"  Template="SS_1_Martyr" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="Attacker"  Parent="AttackLeader" Template="SS_1_Martyr" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="Attacker"  Parent="AttackLeader" Template="SS_1_Martyr" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="Attacker"  Parent="AttackLeader" Template="SS_1_Reaper" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="Attacker"  Parent="AttackLeader" Template="SS_1_Reaper" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="Attacker"  Parent="AttackLeader" Template="SS_1_Reaper" Player="2" Position="-4000,2086,0" />
+		<AttackAttackMove Name="AttackLeader" Position="-3000,1586" />
+		<AttackAttackMove Name="DefenceLeader" Position="-3000,1586" />
+	</Trigger>
+
+	<Trigger Name="tTest1Fails" Type="Var" Var="vTestFailed_Probe" Operator="==" Value="1" NotOtherTrigger="tTest1Succeeds" Inactive="1" >
+		<Objective Name="ZeusVsSubT1" String="BalanceTest_Obj_ZeusVsSubT1_Failed" SetCheck="false" />
+		<DectivateTrigger Target="tTest1Succeeds" />
+	</Trigger>
+	
+	<Trigger Name="tTest1Succeeds" Type="Var" Var="vTestSucceeded_Probe" Operator="==" Value="1" NotOtherTrigger="tTest1Fails"  Inactive="1" >
+		<Objective Name="ZeusVsSubT1" SetCheck="true" />
+		<DeactivateTrigger Target="tTest1Fails" />
+	</Trigger>
+	
+	<Trigger Name="tCleanUpTest1" Type="Var" Var="vTestCleanup_Probe" Operator="==" Value="1" Inactive="1" >
+		<DestroyUnit  Name="AttackLeader" />
+		<DestroyUnit  Name="Attacker" />
+		<DestroyUnit  Name="DefenceLeader" />
+	</Trigger>
+	
+	
+	<!-- Test 02 -->
+	<Trigger Name="tTest2Start" Type="Var" Var="vTestSetup_Probe" Operator="==" Value="1" Inactive="1" >
+		<Objective Name="AvengerVsPhcT1"  String="BalanceTest_Obj_AvengerVsSubT1" SetCheck="false" />
+		<ActivateTrigger Target="tTest2Spawn" />
+		<ActivateTrigger Target="tTest2Fails" />
+		<ActivateTrigger Target="tTest2Succeeds" />
+		<ActivateTrigger Target="tTest2CleanUp" />
+	</Trigger>
+	
+	<Trigger Name="tTest2Spawn" Type="Timer" Timer="1" Inactive="1" >
+		<SpawnUnit Name="DefenceLeader" Template="SS_2_Avenger" Player="1" Position="-2000,1086,0" />
+		<SpawnUnit Name="AttackLeader"  Template="PHC_1_Brute" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="Attacker"  Parent="AttackLeader" Template="PHC_1_Brute" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="Attacker"  Parent="AttackLeader" Template="PHC_1_Brute" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="Attacker"  Parent="AttackLeader" Template="PHC_1_Archer" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="Attacker"  Parent="AttackLeader" Template="PHC_1_Archer" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="Attacker"  Parent="AttackLeader" Template="PHC_1_Archer" Player="2" Position="-4000,2086,0" />
+		<AttackAttackMove Name="AttackLeader" Position="-3000,1586" />
+		<AttackAttackMove Name="DefenceLeader" Position="-3000,1586" />
+	</Trigger>
+
+	<Trigger Name="tTest2Fails" Type="Var" Var="vTestFailed_Probe" Operator="==" Value="1" NotOtherTrigger="tTest2Succeeds" Inactive="1" >
+		<Objective Name="AvengerVsPhcT1" String="BalanceTest_Obj_AvengerVsSubT1_Failed" SetCheck="false" />
+	</Trigger>
+	
+	<Trigger Name="tTest2Succeeds" Type="Var" Var="vTestSucceeded_Probe" Operator="==" Value="1" NotOtherTrigger="tTest2Fails" Inactive="1" >
+		<Objective Name="AvengerVsPhcT1" SetCheck="true" />
+	</Trigger>
+	
+	<Trigger Name="tTest2CleanUp" Type="Var" Var="vTestCleanup_Probe" Operator="==" Value="1" Inactive="1" >
+		<DestroyUnit  Name="AttackLeader" />
+		<DestroyUnit  Name="Attacker" />
+		<DestroyUnit  Name="DefenceLeader" />
+	</Trigger>
+	
+	<!-- End of tests -->
+	
+</Mission>
