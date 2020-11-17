@@ -1,0 +1,9 @@
+Key,Translated String
+ScenarioTestDreadnaughts_Title,Archimedes Test Labs: Dreadnaughts
+ScenarioTestDreadnaughts_Description,A specially designed scenario to test in-game balance
+ScenarioTestDreadnaughts_Synopsis,Archimedes evaluates the relative efffectiveness of Dreadnaughts.
+
+BalanceTest_Button_HyperionVsSubArmyTest,"Hyperion vs Substrate Army"
+
+BalanceTest_Obj_HyperionVsSubArmyTest,"Hyperion vs Substrate Army"
+BalanceTest_Obj_HyperionVsSubArmyTest_Failed,"Hyperion vs Substrate Army (failed)"

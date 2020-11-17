@@ -1,0 +1,605 @@
+<Mission Title="ScenarioTestDreadnaughts_Title" Description="ScenarioTestDreadnaughts_Description" Map="Basic Tutorial" 
+    Synopsis="ScenarioTestDreadnaughts_Synopsis"
+    ImageBig="UI/Art/Ascendancy/AscendancyMissionImages/AscendancyGalaxy.dds"
+    ImageRadius="0.8"
+    PlanetPosition="0.1,0.1"
+    EnableCreeps="0"
+    Notifications="false"
+    HideTerrain="0"
+    HideDifficulty="1"
+	BuildSpeed="VeryFast"
+	CaptureSpeed="Fast"
+    NoSeedVictory="0"
+	>
+
+<!-- REGION LOCATIONS
+
+A   -4544,4576
+B   -2848,4800
+C   -1440,4544
+D   160,3072
+E   1088,4544
+F   2368,3424
+G   2272,1600
+H   2144,192
+I   1760,-1216
+J   352,-1600
+K   -1312,-1728
+L   -1824,-320
+M   -1056,832
+N   -3008,1632
+O   -4992,2336
+
+
+MISSING TESTS
+
+	Zeus vs PHC frigates
+	Athena vs PHC frigates
+	Avenger vs Substrate frigates
+	Mauler vs Substrate frigates
+
+-->
+
+<!-- PLAYER SETUP -->
+
+    <Player Name="BalanceTest_Player"  Faction="PHC" Team="0" Color="0" AIType="Player"   NoSeed="1" NoEngineer="1" StartLocation="0"/>
+    <Player Name="BalanceTest_Player_AI_1"  Faction="PHC" Team="1" Color="1" AIType="Off"   NoSeed="1" NoEngineer="1" StartLocation="0"/>
+	<Player Name="BalanceTest_Player_AI_2"  Faction="PHC" Team="2" Color="2" AIType="Off"   NoSeed="1" NoEngineer="1" StartLocation="0"/>
+	<Player Name="BalanceTest_Player_AI_3"  Faction="PHC" Team="3" Color="7" AIType="Off"   NoSeed="1" NoEngineer="1" StartLocation="0"/>
+
+<!-- RESTRICT BUILDINGS/UNITS/ORBITALS -->
+
+    <Trigger ID="tInitialSetup_Restrictions" Type="Timer" Timer="0" >
+		<Var Name="vTestSetup_Probe"  Operation="=" Value="0" />
+		<Var Name="vTestFailed_Probe"  Operation="=" Value="0" />
+		<Var Name="vTestSucceeded_Probe"  Operation="=" Value="0" />
+		<Var Name="vTestCleanup_Probe"  Operation="=" Value="0" />
+		<Var Name="vTestComplete_Signal"  Operation="=" Value="0" />
+		
+		<Restrict Type="Unit"     ID="All"  Enable="0" />
+        <Restrict Type="Building" ID="All"  Enable="0" />
+		<Restrict Type="Research" ID="All"  Enable="0" />
+		<Restrict Type="Orbital"  ID="All"  Enable="0" />
+		
+        <ActivateTrigger Target="tOpeningDialogue" />
+    </Trigger>
+	
+    <Trigger Name="tOpeningDialogue" Type="Timer" Timer="1" Inactive="1" >
+		<GrantStuff Player="0" Logistics="5000" />
+		<Camera Position="-3000,1586" Speed="1" Snap="0" />
+		<Reveal Name="Reveal_Base" Position="-3000,1586" Size="3000" Enable="1" />
+        <Dialog> 
+            <Entry Icon="Narrator" Text="BalanceTest_BasicIntro_01a" />
+        </Dialog>
+		<ActivateTrigger Target="tReclaimTestNode" />
+    </Trigger>
+	
+	<!-- Main Menu -->
+	<Trigger Name="tMainMenu" Type="Timer" Timer="1" Inactive="1" >
+		<Var Name="vTestSetup_Probe"  Operation="=" Value="0" />
+		<Var Name="vTestFailed_Probe"  Operation="=" Value="0" />
+		<Var Name="vTestSucceeded_Probe"  Operation="=" Value="0" />
+		<Var Name="vTestCleanup_Probe"  Operation="=" Value="0" />
+		
+		<ActivateTrigger Target="tTest1Button" />
+		<ActivateTrigger Target="tTest2Button" />
+		<ActivateTrigger Target="tTest3Button" />
+		<ActivateTrigger Target="tTest4Button" />
+		<ActivateTrigger Target="tTest5Button" />
+		<ActivateTrigger Target="tTest6Button" />
+		<ActivateTrigger Target="tTest7Button" />
+		<ActivateTrigger Target="tTest8Button" />
+		
+		<Dialog>
+			<Entry Icon="Narrator" Text="BalanceTest_SelectTest" >
+				<Choice Text="BalanceTest_Button_HyperionVsSubArmyTest" Id="cTest1" />
+				<Choice Text="BalanceTest_Button_Exit" Id="cExitSimulation" />
+			</Entry>
+		</Dialog>
+	</Trigger>
+	
+	<Trigger Name="BalanceTest_Exit" Type="DialogChoice" Choice="cExitSimulation">
+		<EndMission Victory="1" String="BalanceTest_Victory" />
+	</Trigger>
+	
+	<Trigger Name="tTest1Button" Type="DialogChoice" Choice="cTest1" Inactive="1" >
+		<ActivateTrigger Target="tTest1Start" />
+		<ActivateTrigger Target="tSetupAndStartTest" />
+	</Trigger>
+	
+	<Trigger Name="tTest2Button" Type="DialogChoice" Choice="cTest2" Inactive="1" >
+		<ActivateTrigger Target="tTest2Start" />
+		<ActivateTrigger Target="tSetupAndStartTest" />
+	</Trigger>
+	
+	<Trigger Name="tTest3Button" Type="DialogChoice" Choice="cTest3" Inactive="1" >
+		<ActivateTrigger Target="tTest3Start" />
+		<ActivateTrigger Target="tSetupAndStartTest" />
+	</Trigger>
+	
+	<Trigger Name="tTest4Button" Type="DialogChoice" Choice="cTest4" Inactive="1" >
+		<ActivateTrigger Target="tTest4Start" />
+		<ActivateTrigger Target="tSetupAndStartTest" />
+	</Trigger>
+	
+	<Trigger Name="tTest5Button" Type="DialogChoice" Choice="cTest5" Inactive="1" >
+		<ActivateTrigger Target="tTest5Start" />
+		<ActivateTrigger Target="tSetupAndStartTest" />
+	</Trigger>
+	
+	<Trigger Name="tTest6Button" Type="DialogChoice" Choice="cTest6" Inactive="1" >
+		<ActivateTrigger Target="tTest6Start" />
+		<ActivateTrigger Target="tSetupAndStartTest" />
+	</Trigger>
+	
+	<Trigger Name="tTest7Button" Type="DialogChoice" Choice="cTest7" Inactive="1" >
+		<ActivateTrigger Target="tTest7Start" />
+		<ActivateTrigger Target="tSetupAndStartTest" />
+	</Trigger>
+	
+	<Trigger Name="tTest8Button" Type="DialogChoice" Choice="cTest8" Inactive="1" >
+		<ActivateTrigger Target="tTest8Start" />
+		<ActivateTrigger Target="tSetupAndStartTest" />
+	</Trigger>
+	
+	
+	<!-- Standard Test Functions -->
+	<Trigger Name="tSetupAndStartTest" Type="Timer" Timer="1" Inactive="1" >
+		<Var Name="vTestComplete_Signal"  Operation="=" Value="0" />
+	
+		<ActivateTrigger Target="tTestFails" />
+		<ActivateTrigger Target="tTestSucceeds" />
+		<ActivateTrigger Target="tTestCompleteEvent" />
+
+		<Var Name="vTestSetup_Probe"  Operation="=" Value="1" />
+	</Trigger>
+	
+	<Trigger Name="tTestFails" Type="ZoneCapture" Owner="2" Position="-3000,1586" Inactive="1" >
+		<Dialog>
+			<Entry Icon="Narrator" Text="BalanceTest_FailedResult"  />
+		</Dialog>
+		<Var Name="vTestFailed_Probe"  Operation="=" Value="1" />
+		<Var Name="vTestComplete_Signal"  Operation="=" Value="1" />
+		<ActivateTrigger Target="tReviewResultBeforeClean" />
+	</Trigger>
+	
+	<Trigger Name="tTestSucceeds" Type="ZoneCapture" Owner="1" Position="-3000,1586" Inactive="1" >
+		<Dialog>
+			<Entry Icon="Narrator" Text="BalanceTest_ExpectedResult"  />
+		</Dialog>
+		<Var Name="vTestSucceeded_Probe"  Operation="=" Value="1" />
+		<Var Name="vTestComplete_Signal"  Operation="=" Value="1" />
+		<ActivateTrigger Target="tReviewResultBeforeClean" />
+	</Trigger>
+	
+	<Trigger Name="tReviewResultBeforeClean" Type="Timer" Timer="1" Inactive="1" >
+		<ActivateTrigger Target="tCleanUpTest" />
+		<Dialog>
+			<Entry Icon="Narrator" Text="BalanceTest_SelectCleanup" >
+				<Choice Text="BalanceTest_Button_FinishActiveTest" Id="cCleanUpTest" />
+			</Entry>
+		</Dialog>
+	</Trigger>
+	
+	<Trigger Name="tCleanUpTest" Type="DialogChoice" Choice="cCleanUpTest" Inactive="1" >
+		<ActivateTrigger Target="tReclaimTestNode" />
+		<Var Name="vTestCleanup_Probe"  Operation="=" Value="1" />
+	</Trigger>
+	
+	<Trigger Name="tReclaimTestNode" Type="Timer" Timer="1" Inactive="1">
+		<ActivateTrigger Target="tReclaimComplete" />
+		<SpawnUnit Name="Reclaimer" Template="PHC_3_Hyperion" Player="3" Position="-3000,1586,0" />
+		<CaptureNearest Name="Reclaimer" Repeat="0" />
+	</Trigger>
+	
+	<Trigger Name="tReclaimComplete" Type="ZoneCapture" Owner="3" Position="-3000,1586" Inactive="1" >
+		<DestroyUnit Name="Reclaimer" />
+		<ActivateTrigger Target="tMainMenu" />
+	</Trigger>
+	
+	<Trigger Name="tTestCompleteEvent" Type="Var" Var="vTestComplete_Signal" Operator="==" Value="1" Inactive="1" >
+		<DestroyUnit Name="uFailsafe" />
+	</Trigger>
+	
+	<Trigger Name="tFailsafeDefenderSpawn" Type="Timer" Timer="0" NotOtherTrigger="tTestCompleteEvent" Inactive="1" >
+		<SpawnUnit Name="uFailsafe" Template="PHC_2_Engineer" Player="1" Position="-3000,1586,0" />
+		<CaptureNearest Name="uFailsafe" Repeat="0" />
+	</Trigger>
+	
+	<Trigger Name="tFailsafeAttackerSpawn" Type="Timer" Timer="0" NotOtherTrigger="tTestCompleteEvent" Inactive="1" >
+		<SpawnUnit Name="uFailsafe" Template="PHC_2_Engineer" Player="2" Position="-3000,1586,0" />
+		<CaptureNearest Name="uFailsafe" Repeat="0" />
+	</Trigger>
+	
+	
+	<!-- Test 01: Hyperion vs Substrate Army -->
+	<Trigger Name="tTest1Start" Type="Var" Var="vTestSetup_Probe" Operator="==" Value="1" Inactive="1" >
+		<Objective Name="oHyperionVsSubArmyTest"  String="BalanceTest_Obj_HyperionVsSubArmyTest" SetCheck="false" />
+		<ActivateTrigger Target="tTest1Fails" />
+		<ActivateTrigger Target="tTest1Succeeds" />
+		<ActivateTrigger Target="tCleanUpTest1" />
+		<ActivateTrigger Target="tTest1Spawn" />
+		<ActivateTrigger Target="tTest1Failsafe" />
+		<ActivateTrigger Target="tTest1CompleteEvent" />
+	</Trigger>
+	
+	<Trigger Name="tTest1Spawn" Type="Timer" Timer="1" Inactive="1" >
+		<SpawnUnit Name="DefenceLeader" Template="PHC_3_Hyperion" Player="1" Position="-2000,1086,0" />
+		<SpawnUnit Name="AttackLeader1"  Template="SS_2_Mauler" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="Attacker"  Parent="AttackLeader1" Template="SS_2_Avenger" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="Attacker"  Parent="AttackLeader1" Template="SS_2_Masochist" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="Attacker"  Parent="AttackLeader1" Template="SS_1_Reaper" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="Attacker"  Parent="AttackLeader1" Template="SS_1_Reaper" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="Attacker"  Parent="AttackLeader1" Template="SS_1_Reaper" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="Attacker"  Parent="AttackLeader1" Template="SS_1_Reaper" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="Attacker"  Parent="AttackLeader1" Template="SS_1_Martyr" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="Attacker"  Parent="AttackLeader1" Template="SS_1_Martyr" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="Attacker"  Parent="AttackLeader1" Template="SS_1_SkyCleanser" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="Attacker"  Parent="AttackLeader1" Template="SS_1_SkyCleanser" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="Attacker"  Parent="AttackLeader1" Template="SS_1_Capacitor" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="Attacker"  Parent="AttackLeader1" Template="SS_1_Capacitor" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="AttackLeader2"  Template="SS_2_Mauler" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="Attacker"  Parent="AttackLeader2" Template="SS_2_Avenger" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="Attacker"  Parent="AttackLeader2" Template="SS_1_Reaper" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="Attacker"  Parent="AttackLeader2" Template="SS_1_Reaper" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="Attacker"  Parent="AttackLeader2" Template="SS_1_Reaper" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="Attacker"  Parent="AttackLeader2" Template="SS_1_Reaper" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="Attacker"  Parent="AttackLeader2" Template="SS_1_Martyr" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="Attacker"  Parent="AttackLeader2" Template="SS_1_Martyr" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="Attacker"  Parent="AttackLeader2" Template="SS_1_SkyCleanser" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="Attacker"  Parent="AttackLeader2" Template="SS_1_SkyCleanser" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="Attacker"  Parent="AttackLeader2" Template="SS_2_DroneHive" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="Attacker"  Parent="AttackLeader2" Template="SS_1_Capacitor" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="AttackLeader3"  Template="SS_2_Mauler" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="Attacker"  Parent="AttackLeader3" Template="SS_2_Masochist" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="Attacker"  Parent="AttackLeader3" Template="SS_1_Reaper" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="Attacker"  Parent="AttackLeader3" Template="SS_1_Reaper" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="Attacker"  Parent="AttackLeader3" Template="SS_1_Reaper" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="Attacker"  Parent="AttackLeader3" Template="SS_1_Reaper" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="Attacker"  Parent="AttackLeader3" Template="SS_1_Martyr" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="Attacker"  Parent="AttackLeader3" Template="SS_1_Martyr" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="Attacker"  Parent="AttackLeader3" Template="SS_1_SkyCleanser" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="Attacker"  Parent="AttackLeader3" Template="SS_1_SkyCleanser" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="Attacker"  Parent="AttackLeader3" Template="SS_2_DroneHive" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="Attacker"  Parent="AttackLeader3" Template="SS_1_Capacitor" Player="2" Position="-4000,2086,0" />
+		<AttackAttackMove Name="AttackLeader1" Position="-3000,1586" />
+		<AttackAttackMove Name="AttackLeader2" Position="-3000,1586" />
+		<AttackAttackMove Name="AttackLeader3" Position="-3000,1586" />
+		<AttackAttackMove Name="DefenceLeader" Position="-3000,1586" />
+	</Trigger>
+
+	<Trigger Name="tTest1Failsafe" Type="Timer" Timer="80" NotOtherTrigger="tTest1CompleteEvent" Inactive="1" >
+		<ActivateTrigger Target="tFailsafeDefenderSpawn" />
+	</Trigger>
+
+	<Trigger Name="tTest1Fails" Type="Var" Var="vTestFailed_Probe" Operator="==" Value="1" NotOtherTrigger="tTest1Succeeds" Inactive="1" >
+		<Objective Name="oHyperionVsSubArmyTest" String="BalanceTest_Obj_HyperionVsSubArmyTest_Failed" SetCheck="false" />
+	</Trigger>
+	
+	<Trigger Name="tTest1Succeeds" Type="Var" Var="vTestSucceeded_Probe" Operator="==" Value="1" NotOtherTrigger="tTest1Fails"  Inactive="1" >
+		<Objective Name="oHyperionVsSubArmyTest" SetCheck="true" />
+	</Trigger>
+	
+	<Trigger Name="tTest1CompleteEvent" Type="Var" Var="vTestComplete_Signal" Operator="==" Value="1" Inactive="1" >
+	</Trigger>
+	
+	<Trigger Name="tCleanUpTest1" Type="Var" Var="vTestCleanup_Probe" Operator="==" Value="1" Inactive="1" >
+		<DestroyUnit  Name="AttackLeader1" />
+		<DestroyUnit  Name="AttackLeader2" />
+		<DestroyUnit  Name="AttackLeader3" />
+		<DestroyUnit  Name="Attacker" />
+		<DestroyUnit  Name="DefenceLeader" />
+	</Trigger>
+	
+	
+	<!-- Test 02: Avenger vs PHC Frigates -->
+	<Trigger Name="tTest2Start" Type="Var" Var="vTestSetup_Probe" Operator="==" Value="1" Inactive="1" >
+		<Objective Name="AvengerVsPhcT1"  String="BalanceTest_Obj_AvengerVsPhcT1" SetCheck="false" />
+		<ActivateTrigger Target="tTest2Spawn" />
+		<ActivateTrigger Target="tTest2Fails" />
+		<ActivateTrigger Target="tTest2Succeeds" />
+		<ActivateTrigger Target="tTest2CleanUp" />
+		<ActivateTrigger Target="tTest2Failsafe" />
+		<ActivateTrigger Target="tTest2CompleteEvent" />
+	</Trigger>
+	
+	<Trigger Name="tTest2Spawn" Type="Timer" Timer="1" Inactive="1" >
+		<SpawnUnit Name="DefenceLeader" Template="SS_2_Avenger" Player="1" Position="-2000,1086,0" />
+		<SpawnUnit Name="AttackLeader"  Template="PHC_1_Brute" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="Attacker"  Parent="AttackLeader" Template="PHC_1_Brute" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="Attacker"  Parent="AttackLeader" Template="PHC_1_Brute" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="Attacker"  Parent="AttackLeader" Template="PHC_1_Archer" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="Attacker"  Parent="AttackLeader" Template="PHC_1_Archer" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="Attacker"  Parent="AttackLeader" Template="PHC_1_Archer" Player="2" Position="-4000,2086,0" />
+		<AttackAttackMove Name="AttackLeader" Position="-3000,1586" />
+		<AttackAttackMove Name="DefenceLeader" Position="-3000,1586" />
+	</Trigger>
+	
+	<Trigger Name="tTest2Failsafe" Type="Timer" Timer="80" NotOtherTrigger="tTest2CompleteEvent" Inactive="1" >
+		<ActivateTrigger Target="tFailsafeDefenderSpawn" />
+	</Trigger>
+
+	<Trigger Name="tTest2Fails" Type="Var" Var="vTestFailed_Probe" Operator="==" Value="1" NotOtherTrigger="tTest2Succeeds" Inactive="1" >
+		<Objective Name="AvengerVsPhcT1" String="BalanceTest_Obj_AvengerVsPhcT1_Failed" SetCheck="false" />
+	</Trigger>
+	
+	<Trigger Name="tTest2Succeeds" Type="Var" Var="vTestSucceeded_Probe" Operator="==" Value="1" NotOtherTrigger="tTest2Fails" Inactive="1" >
+		<Objective Name="AvengerVsPhcT1" SetCheck="true" />
+	</Trigger>
+	
+	<Trigger Name="tTest2CompleteEvent" Type="Var" Var="vTestComplete_Signal" Operator="==" Value="1" Inactive="1" >
+	</Trigger>
+	
+	<Trigger Name="tTest2CleanUp" Type="Var" Var="vTestCleanup_Probe" Operator="==" Value="1" Inactive="1" >
+		<DestroyUnit  Name="AttackLeader" />
+		<DestroyUnit  Name="Attacker" />
+		<DestroyUnit  Name="DefenceLeader" />
+	</Trigger>
+	
+	
+	<!-- Test 03: Mauler vs Zeus -->
+	<Trigger Name="tTest3Start" Type="Var" Var="vTestSetup_Probe" Operator="==" Value="1" Inactive="1" >
+		<Objective Name="ZeusVsMauler"  String="BalanceTest_Obj_ZeusVsMauler" SetCheck="false" />
+		<ActivateTrigger Target="tTest3Spawn" />
+		<ActivateTrigger Target="tTest3Fails" />
+		<ActivateTrigger Target="tTest3Succeeds" />
+		<ActivateTrigger Target="tTest3CleanUp" />
+		<ActivateTrigger Target="tTest3Failsafe" />
+		<ActivateTrigger Target="tTest3CompleteEvent" />
+	</Trigger>
+	
+	<Trigger Name="tTest3Spawn" Type="Timer" Timer="1" Inactive="1" >
+		<SpawnUnit Name="DefenceLeader" Template="SS_2_Mauler" Player="1" Position="-2000,1086,0" />
+		<SpawnUnit Name="Defender"  Parent="DefenceLeader" Template="SS_2_Mauler" Player="1" Position="-2000,1086,0" />
+		<SpawnUnit Name="AttackLeader"  Template="PHC_2_Zeus" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="Attacker"  Parent="AttackLeader" Template="PHC_2_Zeus" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="Attacker"  Parent="AttackLeader" Template="PHC_2_Zeus" Player="2" Position="-4000,2086,0" />
+		<AttackAttackMove Name="AttackLeader" Position="-3000,1586" />
+		<AttackAttackMove Name="DefenceLeader" Position="-3000,1586" />
+	</Trigger>
+	
+	<Trigger Name="tTest3Failsafe" Type="Timer" Timer="80" NotOtherTrigger="tTest3CompleteEvent" Inactive="1" >
+		<ActivateTrigger Target="tFailsafeDefenderSpawn" />
+	</Trigger>
+
+	<Trigger Name="tTest3Fails" Type="Var" Var="vTestFailed_Probe" Operator="==" Value="1" NotOtherTrigger="tTest3Succeeds" Inactive="1" >
+		<Objective Name="ZeusVsMauler" String="BalanceTest_Obj_ZeusVsMauler_Failed" SetCheck="false" />
+	</Trigger>
+	
+	<Trigger Name="tTest3Succeeds" Type="Var" Var="vTestSucceeded_Probe" Operator="==" Value="1" NotOtherTrigger="tTest3Fails" Inactive="1" >
+		<Objective Name="ZeusVsMauler" SetCheck="true" />
+	</Trigger>
+	
+	<Trigger Name="tTest3CompleteEvent" Type="Var" Var="vTestComplete_Signal" Operator="==" Value="1" Inactive="1" >
+	</Trigger>
+	
+	<Trigger Name="tTest3CleanUp" Type="Var" Var="vTestCleanup_Probe" Operator="==" Value="1" Inactive="1" >
+		<DestroyUnit  Name="AttackLeader" />
+		<DestroyUnit  Name="Defender" />
+		<DestroyUnit  Name="DefenceLeader" />
+		<DestroyUnit  Name="Attacker" />
+	</Trigger>
+	
+	
+	<!-- Test 04: Athena vs Mauler -->
+	<Trigger Name="tTest4Start" Type="Var" Var="vTestSetup_Probe" Operator="==" Value="1" Inactive="1" >
+		<Objective Name="AthenaVsMauler"  String="BalanceTest_Obj_AthenaVsMauler" SetCheck="false" />
+		<ActivateTrigger Target="tTest4Spawn" />
+		<ActivateTrigger Target="tTest4Fails" />
+		<ActivateTrigger Target="tTest4Succeeds" />
+		<ActivateTrigger Target="tTest4CleanUp" />
+		<ActivateTrigger Target="tTest4Failsafe" />
+		<ActivateTrigger Target="tTest4CompleteEvent" />
+	</Trigger>
+	
+	<Trigger Name="tTest4Spawn" Type="Timer" Timer="1" Inactive="1" >
+		<SpawnUnit Name="DefenceLeader" Template="SS_2_Mauler" Player="1" Position="-2000,1086,0" />
+		<SpawnUnit Name="AttackLeader"  Template="PHC_2_Athena" Player="2" Position="-4000,2086,0" />
+		<AttackAttackMove Name="AttackLeader" Position="-3000,1586" />
+		<AttackAttackMove Name="DefenceLeader" Position="-3000,1586" />
+	</Trigger>
+	
+	<Trigger Name="tTest4Failsafe" Type="Timer" Timer="50" NotOtherTrigger="tTest4CompleteEvent" Inactive="1" >
+		<ActivateTrigger Target="tFailsafeAttackerSpawn" />
+	</Trigger>
+
+	<Trigger Name="tTest4Fails" Type="Var" Var="vTestFailed_Probe" Operator="==" Value="1" NotOtherTrigger="tTest4Succeeds" Inactive="1" >
+		<Objective Name="AthenaVsMauler" SetCheck="true" />
+	</Trigger>
+	
+	<Trigger Name="tTest4Succeeds" Type="Var" Var="vTestSucceeded_Probe" Operator="==" Value="1" NotOtherTrigger="tTest4Fails" Inactive="1" >
+		<Objective Name="AthenaVsMauler" SetCheck="true" />
+	</Trigger>
+	
+	<Trigger Name="tTest4CompleteEvent" Type="Var" Var="vTestComplete_Signal" Operator="==" Value="1" Inactive="1" >
+	</Trigger>
+	
+	<Trigger Name="tTest4CleanUp" Type="Var" Var="vTestCleanup_Probe" Operator="==" Value="1" Inactive="1" >
+		<DestroyUnit  Name="AttackLeader" />
+		<DestroyUnit  Name="DefenceLeader" />
+	</Trigger>
+	
+	
+	<!-- Test 05: Athena vs Avenger -->
+	<Trigger Name="tTest5Start" Type="Var" Var="vTestSetup_Probe" Operator="==" Value="1" Inactive="1" >
+		<Objective Name="AthenaVsAvenger"  String="BalanceTest_Obj_AthenaVsAvenger" SetCheck="false" />
+		<ActivateTrigger Target="tTest5Spawn" />
+		<ActivateTrigger Target="tTest5Fails" />
+		<ActivateTrigger Target="tTest5Succeeds" />
+		<ActivateTrigger Target="tTest5CleanUp" />
+		<ActivateTrigger Target="tTest5Failsafe" />
+		<ActivateTrigger Target="tTest5CompleteEvent" />
+	</Trigger>
+	
+	<Trigger Name="tTest5Spawn" Type="Timer" Timer="1" Inactive="1" >
+		<SpawnUnit Name="DefenceLeader" Template="PHC_2_Athena" Player="1" Position="-2000,1086,0" />
+		<SpawnUnit Name="Defender"  Parent="DefenceLeader" Template="PHC_2_Athena" Player="1" Position="-2000,1086,0" />
+		<SpawnUnit Name="AttackLeader"  Template="SS_2_Avenger" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="Attacker"  Parent="AttackLeader" Template="SS_2_Avenger" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="Attacker"  Parent="AttackLeader" Template="SS_2_Avenger" Player="2" Position="-4000,2086,0" />
+		<AttackAttackMove Name="AttackLeader" Position="-3000,1586" />
+		<AttackAttackMove Name="DefenceLeader" Position="-3000,1586" />
+	</Trigger>
+	
+	<Trigger Name="tTest5Failsafe" Type="Timer" Timer="80" NotOtherTrigger="tTest5CompleteEvent" Inactive="1" >
+		<ActivateTrigger Target="tFailsafeDefenderSpawn" />
+	</Trigger>
+
+	<Trigger Name="tTest5Fails" Type="Var" Var="vTestFailed_Probe" Operator="==" Value="1" NotOtherTrigger="tTest5Succeeds" Inactive="1" >
+		<Objective Name="AthenaVsAvenger" String="BalanceTest_Obj_AthenaVsAvenger_Failed" SetCheck="false" />
+	</Trigger>
+	
+	<Trigger Name="tTest5Succeeds" Type="Var" Var="vTestSucceeded_Probe" Operator="==" Value="1" NotOtherTrigger="tTest5Fails" Inactive="1" >
+		<Objective Name="AthenaVsAvenger" SetCheck="true" />
+	</Trigger>
+	
+	<Trigger Name="tTest5CompleteEvent" Type="Var" Var="vTestComplete_Signal" Operator="==" Value="1" Inactive="1" >
+	</Trigger>
+	
+	<Trigger Name="tTest5CleanUp" Type="Var" Var="vTestCleanup_Probe" Operator="==" Value="1" Inactive="1" >
+		<DestroyUnit  Name="AttackLeader" />
+		<DestroyUnit  Name="Defender" />
+		<DestroyUnit  Name="DefenceLeader" />
+		<DestroyUnit  Name="Attacker" />
+	</Trigger>
+	
+	
+	<!-- Test 06: Zeus vs Avenger -->
+	<Trigger Name="tTest6Start" Type="Var" Var="vTestSetup_Probe" Operator="==" Value="1" Inactive="1" >
+		<Objective Name="ZeusVsAvenger"  String="BalanceTest_Obj_ZeusVsAvenger" SetCheck="false" />
+		<ActivateTrigger Target="tTest6Spawn" />
+		<ActivateTrigger Target="tTest6Fails" />
+		<ActivateTrigger Target="tTest6Succeeds" />
+		<ActivateTrigger Target="tTest6CleanUp" />
+		<ActivateTrigger Target="tTest6Failsafe" />
+		<ActivateTrigger Target="tTest6CompleteEvent" />
+	</Trigger>
+	
+	<Trigger Name="tTest6Spawn" Type="Timer" Timer="1" Inactive="1" >
+		<SpawnUnit Name="DefenceLeader" Template="SS_2_Avenger" Player="1" Position="-2000,1086,0" />
+		<SpawnUnit Name="AttackLeader"  Template="PHC_2_Zeus" Player="2" Position="-4000,2086,0" />
+		<AttackAttackMove Name="AttackLeader" Position="-3000,1586" />
+		<AttackAttackMove Name="DefenceLeader" Position="-3000,1586" />
+	</Trigger>
+	
+	<Trigger Name="tTest6Failsafe" Type="Timer" Timer="50" NotOtherTrigger="tTest6CompleteEvent" Inactive="1" >
+		<ActivateTrigger Target="tFailsafeAttackerSpawn" />
+	</Trigger>
+
+	<Trigger Name="tTest6Fails" Type="Var" Var="vTestFailed_Probe" Operator="==" Value="1" NotOtherTrigger="tTest6Succeeds" Inactive="1" >
+		<Objective Name="ZeusVsAvenger" SetCheck="true" />
+	</Trigger>
+	
+	<Trigger Name="tTest6Succeeds" Type="Var" Var="vTestSucceeded_Probe" Operator="==" Value="1" NotOtherTrigger="tTest6Fails" Inactive="1" >
+		<Objective Name="ZeusVsAvenger" SetCheck="true" />
+	</Trigger>
+	
+	<Trigger Name="tTest6CompleteEvent" Type="Var" Var="vTestComplete_Signal" Operator="==" Value="1" Inactive="1" >
+	</Trigger>
+	
+	<Trigger Name="tTest6CleanUp" Type="Var" Var="vTestCleanup_Probe" Operator="==" Value="1" Inactive="1" >
+		<DestroyUnit  Name="AttackLeader" />
+		<DestroyUnit  Name="DefenceLeader" />
+	</Trigger>
+	
+	
+	<!-- Test 07: Athena vs Substrate Frigates -->
+	<Trigger Name="tTest7Start" Type="Var" Var="vTestSetup_Probe" Operator="==" Value="1" Inactive="1" >
+		<Objective Name="AthenaVsSubT1"  String="BalanceTest_Obj_AthenaVsSubT1" SetCheck="false" />
+		<ActivateTrigger Target="tTest7Fails" />
+		<ActivateTrigger Target="tTest7Succeeds" />
+		<ActivateTrigger Target="tCleanUpTest7" />
+		<ActivateTrigger Target="tTest7Spawn" />
+		<ActivateTrigger Target="tTest7Failsafe" />
+		<ActivateTrigger Target="tTest7CompleteEvent" />
+	</Trigger>
+	
+	<Trigger Name="tTest7Spawn" Type="Timer" Timer="1" Inactive="1" >
+		<SpawnUnit Name="DefenceLeader" Template="SS_1_Martyr" Player="1" Position="-2000,1086,0" />
+		<SpawnUnit Name="Defender"  Parent="DefenceLeader" Template="SS_1_Martyr" Player="1" Position="-2000,1086,0" />
+		<SpawnUnit Name="Defender"  Parent="DefenceLeader" Template="SS_1_Martyr" Player="1" Position="-2000,1086,0" />
+		<SpawnUnit Name="Defender"  Parent="DefenceLeader" Template="SS_1_Martyr" Player="1" Position="-2000,1086,0" />
+		<SpawnUnit Name="Defender"  Parent="DefenceLeader" Template="SS_1_Reaper" Player="1" Position="-2000,1086,0" />
+		<SpawnUnit Name="Defender"  Parent="DefenceLeader" Template="SS_1_Reaper" Player="1" Position="-2000,1086,0" />
+		<SpawnUnit Name="Defender"  Parent="DefenceLeader" Template="SS_1_Reaper" Player="1" Position="-2000,1086,0" />
+		<SpawnUnit Name="Defender"  Parent="DefenceLeader" Template="SS_1_Reaper" Player="1" Position="-2000,1086,0" />
+		<SpawnUnit Name="AttackLeader"  Template="PHC_2_Athena" Player="2" Position="-4000,2086,0" />
+		<AttackAttackMove Name="AttackLeader" Position="-3000,1586" />
+		<CaptureNearestNext Name="AttackLeader" Repeat="0" />
+		<AttackAttackMove Name="DefenceLeader" Position="-3000,1586" />
+		<CaptureNearestNext Name="DefenceLeader" Repeat="0" />
+	</Trigger>
+
+	<Trigger Name="tTest7Failsafe" Type="Timer" Timer="80" NotOtherTrigger="tTest7CompleteEvent" Inactive="1" >
+		<ActivateTrigger Target="tFailsafeDefenderSpawn" />
+	</Trigger>
+
+	<Trigger Name="tTest7Fails" Type="Var" Var="vTestFailed_Probe" Operator="==" Value="1" NotOtherTrigger="tTest7Succeeds" Inactive="1" >
+		<Objective Name="AthenaVsSubT1" String="BalanceTest_Obj_AthenaVsSubT1_Failed" SetCheck="false" />
+	</Trigger>
+	
+	<Trigger Name="tTest7Succeeds" Type="Var" Var="vTestSucceeded_Probe" Operator="==" Value="1" NotOtherTrigger="tTest7Fails"  Inactive="1" >
+		<Objective Name="AthenaVsSubT1" SetCheck="true" />
+	</Trigger>
+	
+	<Trigger Name="tTest7CompleteEvent" Type="Var" Var="vTestComplete_Signal" Operator="==" Value="1" Inactive="1" >
+	</Trigger>
+	
+	<Trigger Name="tCleanUpTest7" Type="Var" Var="vTestCleanup_Probe" Operator="==" Value="1" Inactive="1" >
+		<DestroyUnit  Name="AttackLeader" />
+		<DestroyUnit  Name="DefenceLeader" />
+		<DestroyUnit  Name="Defender" />
+	</Trigger>
+	
+	
+	<!-- Test 08: Mauler vs PHC Frigates -->
+	<Trigger Name="tTest8Start" Type="Var" Var="vTestSetup_Probe" Operator="==" Value="1" Inactive="1" >
+		<Objective Name="MaulerVsPhcT1"  String="BalanceTest_Obj_MaulerVsPhcT1" SetCheck="false" />
+		<ActivateTrigger Target="tTest8Fails" />
+		<ActivateTrigger Target="tTest8Succeeds" />
+		<ActivateTrigger Target="tCleanUpTest8" />
+		<ActivateTrigger Target="tTest8Spawn" />
+		<ActivateTrigger Target="tTest8Failsafe" />
+		<ActivateTrigger Target="tTest8CompleteEvent" />
+	</Trigger>
+	
+	<Trigger Name="tTest8Spawn" Type="Timer" Timer="1" Inactive="1" >
+		<SpawnUnit Name="DefenceLeader" Template="PHC_1_Brute" Player="1" Position="-2000,1086,0" />
+		<SpawnUnit Name="Defender"  Parent="DefenceLeader" Template="PHC_1_Brute" Player="1" Position="-2000,1086,0" />
+		<SpawnUnit Name="Defender"  Parent="DefenceLeader" Template="PHC_1_Brute" Player="1" Position="-2000,1086,0" />
+		<SpawnUnit Name="Defender"  Parent="DefenceLeader" Template="PHC_1_Brute" Player="1" Position="-2000,1086,0" />
+		<SpawnUnit Name="Defender"  Parent="DefenceLeader" Template="PHC_1_Archer" Player="1" Position="-2000,1086,0" />
+		<SpawnUnit Name="Defender"  Parent="DefenceLeader" Template="PHC_1_Archer" Player="1" Position="-2000,1086,0" />
+		<SpawnUnit Name="Defender"  Parent="DefenceLeader" Template="PHC_1_Archer" Player="1" Position="-2000,1086,0" />
+		<SpawnUnit Name="Defender"  Parent="DefenceLeader" Template="PHC_1_Archer" Player="1" Position="-2000,1086,0" />
+		<SpawnUnit Name="AttackLeader"  Template="SS_2_Mauler" Player="2" Position="-4000,2086,0" />
+		<AttackAttackMove Name="AttackLeader" Position="-3000,1586" />
+		<CaptureNearestNext Name="AttackLeader" Repeat="0" />
+		<AttackAttackMove Name="DefenceLeader" Position="-3000,1586" />
+		<CaptureNearestNext Name="DefenceLeader" Repeat="0" />
+	</Trigger>
+
+	<Trigger Name="tTest8Failsafe" Type="Timer" Timer="80" NotOtherTrigger="tTest8CompleteEvent" Inactive="1" >
+		<ActivateTrigger Target="tFailsafeDefenderSpawn" />
+	</Trigger>
+
+	<Trigger Name="tTest8Fails" Type="Var" Var="vTestFailed_Probe" Operator="==" Value="1" NotOtherTrigger="tTest8Succeeds" Inactive="1" >
+		<Objective Name="MaulerVsPhcT1" String="BalanceTest_Obj_AthenaVsSubT1_Failed" SetCheck="false" />
+	</Trigger>
+	
+	<Trigger Name="tTest8Succeeds" Type="Var" Var="vTestSucceeded_Probe" Operator="==" Value="1" NotOtherTrigger="tTest8Fails"  Inactive="1" >
+		<Objective Name="MaulerVsPhcT1" SetCheck="true" />
+	</Trigger>
+	
+	<Trigger Name="tTest8CompleteEvent" Type="Var" Var="vTestComplete_Signal" Operator="==" Value="1" Inactive="1" >
+	</Trigger>
+	
+	<Trigger Name="tCleanUpTest8" Type="Var" Var="vTestCleanup_Probe" Operator="==" Value="1" Inactive="1" >
+		<DestroyUnit  Name="AttackLeader" />
+		<DestroyUnit  Name="DefenceLeader" />
+		<DestroyUnit  Name="Defender" />
+	</Trigger>
+	
+	<!-- End of tests -->
+	
+</Mission>
