@@ -60,6 +60,7 @@ TODOS
 		<Var Name="vTestFailed_Probe"  Operation="=" Value="0" />
 		<Var Name="vTestSucceeded_Probe"  Operation="=" Value="0" />
 		<Var Name="vTestCleanup_Probe"  Operation="=" Value="0" />
+		<Var Name="vTestComplete_Signal"  Operation="=" Value="0" />
 		
 		<Restrict Type="Unit"     ID="All"  Enable="0" />
         <Restrict Type="Building" ID="All"  Enable="0" />
@@ -74,7 +75,7 @@ TODOS
 		<Camera Position="-3000,1586" Speed="1" Snap="0" />
 		<Reveal Name="Reveal_Base" Position="-3000,1586" Size="3000" Enable="1" />
         <Dialog> 
-            <Entry Icon="Archimedes" Text="BalanceTest_BasicIntro_01a" />
+            <Entry Icon="Narrator" Text="BalanceTest_BasicIntro_01a" />
         </Dialog>
 		<ActivateTrigger Target="tReclaimTestNode" />
     </Trigger>
@@ -115,8 +116,12 @@ TODOS
 	
 	<!-- Standard Test Functions -->
 	<Trigger Name="tSetupAndStartTest" Type="Timer" Timer="1" Inactive="1" >
+		<Var Name="vTestComplete_Signal"  Operation="=" Value="0" />
+	
 		<ActivateTrigger Target="tTestFails" />
 		<ActivateTrigger Target="tTestSucceeds" />
+		<ActivateTrigger Target="tTestCompleteEvent" />
+
 		<Var Name="vTestSetup_Probe"  Operation="=" Value="1" />
 	</Trigger>
 	
@@ -126,6 +131,7 @@ TODOS
 		</Dialog>
 		<Var Name="vTestFailed_Probe"  Operation="=" Value="1" />
 		<ActivateTrigger Target="tReviewResultBeforeClean" />
+		<ActivateTrigger Target="tTestComplete" />
 	</Trigger>
 	
 	<Trigger Name="tTestSucceeds" Type="ZoneCapture" Owner="1" Position="-3000,1586" Inactive="1" >
@@ -134,6 +140,7 @@ TODOS
 		</Dialog>
 		<Var Name="vTestSucceeded_Probe"  Operation="=" Value="1" />
 		<ActivateTrigger Target="tReviewResultBeforeClean" />
+		<ActivateTrigger Target="tTestComplete" />
 	</Trigger>
 	
 	<Trigger Name="tReviewResultBeforeClean" Type="Timer" Timer="1" Inactive="1" >
@@ -161,6 +168,19 @@ TODOS
 		<ActivateTrigger Target="tMainMenu" />
 	</Trigger>
 	
+	<Trigger Name="tTestCompleteEvent"Type="Var" Var="vTestComplete_Signal" Operator="==" Value="1" Inactive="1" >
+		<DestroyUnit Name="uFailsafe" />
+	</Trigger>
+	
+	<Trigger Name="tFailsafeDefender" Type="Timer" Timer="40" NotOtherTrigger="tTestCompleteEvent" Inactive="1" >
+		<SpawnUnit Name="uFailsafe" Template="PHC_2_Engineer" Player="1" Position="-3000,1586,0" />
+		<CaptureNearest Name="uFailsafe" Repeat="0" />
+	</Trigger>
+	
+	<Trigger Name="tFailsafeAttacker" Type="Timer" Timer="40" NotOtherTrigger="tTestCompleteEvent" Inactive="1" >
+		<SpawnUnit Name="uFailsafe" Template="PHC_2_Engineer" Player="2" Position="-3000,1586,0" />
+		<CaptureNearest Name="uFailsafe" Repeat="0" />
+	</Trigger>
 	
 	<!-- Test 01 -->
 	<Trigger Name="tTest1Start" Type="Var" Var="vTestSetup_Probe" Operator="==" Value="1" Inactive="1" >
@@ -168,10 +188,11 @@ TODOS
 		<ActivateTrigger Target="tTest1Fails" />
 		<ActivateTrigger Target="tTest1Succeeds" />
 		<ActivateTrigger Target="tCleanUpTest1" />
-		<ActivateTrigger Target="BalanceTest_ZeusVsSubT1_Spawn" />
+		<ActivateTrigger Target="tTest1Spawn" />
+		<ActivateTrigger Target="tTest1Failsafe" />
 	</Trigger>
 	
-	<Trigger Name="BalanceTest_ZeusVsSubT1_Spawn" Type="Timer" Timer="1" Inactive="1" >
+	<Trigger Name="tTest1Spawn" Type="Timer" Timer="1" Inactive="1" >
 		<SpawnUnit Name="DefenceLeader" Template="PHC_2_Zeus" Player="1" Position="-2000,1086,0" />
 		<SpawnUnit Name="AttackLeader"  Template="SS_1_Martyr" Player="2" Position="-4000,2086,0" />
 		<SpawnUnit Name="Attacker"  Parent="AttackLeader" Template="SS_1_Martyr" Player="2" Position="-4000,2086,0" />
@@ -183,13 +204,16 @@ TODOS
 		<AttackAttackMove Name="DefenceLeader" Position="-3000,1586" />
 	</Trigger>
 
+	<Trigger Name="tTest1Failsafe" Type="Timer" Timer="60" Inactive="1" >
+		<ActivateTrigger Target="tFailsafeDefender" />
+	</Trigger>
+
 	<Trigger Name="tTest1Fails" Type="Var" Var="vTestFailed_Probe" Operator="==" Value="1" NotOtherTrigger="tTest1Succeeds" Inactive="1" >
 		<Objective Name="ZeusVsSubT1" String="BalanceTest_Obj_ZeusVsSubT1_Failed" SetCheck="false" />
 		<DectivateTrigger Target="tTest1Succeeds" />
 	</Trigger>
 	
 	<Trigger Name="tTest1Succeeds" Type="Var" Var="vTestSucceeded_Probe" Operator="==" Value="1" NotOtherTrigger="tTest1Fails"  Inactive="1" >
-		<Objective Name="ZeusVsSubT1" SetCheck="true" />
 		<DeactivateTrigger Target="tTest1Fails" />
 	</Trigger>
 	
@@ -207,6 +231,7 @@ TODOS
 		<ActivateTrigger Target="tTest2Fails" />
 		<ActivateTrigger Target="tTest2Succeeds" />
 		<ActivateTrigger Target="tTest2CleanUp" />
+		<ActivateTrigger Target="tTest2Failsafe" />
 	</Trigger>
 	
 	<Trigger Name="tTest2Spawn" Type="Timer" Timer="1" Inactive="1" >
@@ -219,6 +244,10 @@ TODOS
 		<SpawnUnit Name="Attacker"  Parent="AttackLeader" Template="PHC_1_Archer" Player="2" Position="-4000,2086,0" />
 		<AttackAttackMove Name="AttackLeader" Position="-3000,1586" />
 		<AttackAttackMove Name="DefenceLeader" Position="-3000,1586" />
+	</Trigger>
+	
+	<Trigger Name="tTest2Failsafe" Type="Timer" Timer="60" Inactive="1" >
+		<ActivateTrigger Target="tFailsafeDefender" />
 	</Trigger>
 
 	<Trigger Name="tTest2Fails" Type="Var" Var="vTestFailed_Probe" Operator="==" Value="1" NotOtherTrigger="tTest2Succeeds" Inactive="1" >
