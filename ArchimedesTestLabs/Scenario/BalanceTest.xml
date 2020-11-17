@@ -30,6 +30,14 @@ M   -1056,832
 N   -3008,1632
 O   -4992,2336
 
+
+MISSING TESTS
+
+	Zeus vs PHC frigates
+	Athena vs PHC frigates
+	Avenger vs Substrate frigates
+	Mauler vs Substrate frigates
+
 -->
 
 <!-- PLAYER SETUP -->
@@ -86,8 +94,8 @@ O   -4992,2336
 			<Entry Icon="Narrator" Text="BalanceTest_SelectTest" >
 				<Choice Text="BalanceTest_Button_ZeusVsSubT1Test" Id="cTest1" />
 				<Choice Text="BalanceTest_Button_AthenaVsSubT1Test" Id="cTest7" />
-				<Choice Text="BalanceTest_Button_AvengerVsSubT1Test" Id="cTest2" />
-				<Choice Text="BalanceTest_Button_MaulerVsSubT1Test" Id="cTest8" />
+				<Choice Text="BalanceTest_Button_AvengerVsPhcT1Test" Id="cTest2" />
+				<Choice Text="BalanceTest_Button_MaulerVsPhcT1Test" Id="cTest8" />
 				<Choice Text="BalanceTest_Button_ZeusVsAvengerTest" Id="cTest6" />
 				<Choice Text="BalanceTest_Button_AthenaVsAvengerTest" Id="cTest5" />
 				<Choice Text="BalanceTest_Button_ZeusVsMaulerTest" Id="cTest3" />
@@ -258,7 +266,7 @@ O   -4992,2336
 	
 	<!-- Test 02: Avenger vs PHC Frigates -->
 	<Trigger Name="tTest2Start" Type="Var" Var="vTestSetup_Probe" Operator="==" Value="1" Inactive="1" >
-		<Objective Name="AvengerVsPhcT1"  String="BalanceTest_Obj_AvengerVsSubT1" SetCheck="false" />
+		<Objective Name="AvengerVsPhcT1"  String="BalanceTest_Obj_AvengerVsPhcT1" SetCheck="false" />
 		<ActivateTrigger Target="tTest2Spawn" />
 		<ActivateTrigger Target="tTest2Fails" />
 		<ActivateTrigger Target="tTest2Succeeds" />
@@ -284,7 +292,7 @@ O   -4992,2336
 	</Trigger>
 
 	<Trigger Name="tTest2Fails" Type="Var" Var="vTestFailed_Probe" Operator="==" Value="1" NotOtherTrigger="tTest2Succeeds" Inactive="1" >
-		<Objective Name="AvengerVsPhcT1" String="BalanceTest_Obj_AvengerVsSubT1_Failed" SetCheck="false" />
+		<Objective Name="AvengerVsPhcT1" String="BalanceTest_Obj_AvengerVsPhcT1_Failed" SetCheck="false" />
 	</Trigger>
 	
 	<Trigger Name="tTest2Succeeds" Type="Var" Var="vTestSucceeded_Probe" Operator="==" Value="1" NotOtherTrigger="tTest2Fails" Inactive="1" >
@@ -518,7 +526,7 @@ O   -4992,2336
 	
 	<!-- Test 08: Mauler vs PHC Frigates -->
 	<Trigger Name="tTest8Start" Type="Var" Var="vTestSetup_Probe" Operator="==" Value="1" Inactive="1" >
-		<Objective Name="MaulerVsSubT1"  String="BalanceTest_Obj_MaulerVsSubT1" SetCheck="false" />
+		<Objective Name="MaulerVsPhcT1"  String="BalanceTest_Obj_MaulerVsPhcT1" SetCheck="false" />
 		<ActivateTrigger Target="tTest8Fails" />
 		<ActivateTrigger Target="tTest8Succeeds" />
 		<ActivateTrigger Target="tCleanUpTest8" />
@@ -548,11 +556,11 @@ O   -4992,2336
 	</Trigger>
 
 	<Trigger Name="tTest8Fails" Type="Var" Var="vTestFailed_Probe" Operator="==" Value="1" NotOtherTrigger="tTest8Succeeds" Inactive="1" >
-		<Objective Name="MaulerVsSubT1" String="BalanceTest_Obj_AthenaVsSubT1_Failed" SetCheck="false" />
+		<Objective Name="MaulerVsPhcT1" String="BalanceTest_Obj_AthenaVsSubT1_Failed" SetCheck="false" />
 	</Trigger>
 	
 	<Trigger Name="tTest8Succeeds" Type="Var" Var="vTestSucceeded_Probe" Operator="==" Value="1" NotOtherTrigger="tTest8Fails"  Inactive="1" >
-		<Objective Name="MaulerVsSubT1" SetCheck="true" />
+		<Objective Name="MaulerVsPhcT1" SetCheck="true" />
 	</Trigger>
 	
 	<Trigger Name="tTest8CompleteEvent" Type="Var" Var="vTestComplete_Signal" Operator="==" Value="1" Inactive="1" >
