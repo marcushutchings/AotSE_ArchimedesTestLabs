@@ -9,9 +9,9 @@ BalanceTest_Player_AI_2,"Test System Beta"
 BalanceTest_Player_AI_3,"Test System Omega"
 Player_Neutrals,Neutrals
 
-BalanceTest_BasicIntro_01a,"Let's see whether my modifications to our units perform in accordence with their designated parameters."
+BalanceTest_BasicIntro_01a,"Let's see whether my modifications to our units perform in accordence with their designated parameters. System Omega, prepare the field for the experiments and ensure the failsafes are initialized... this time."
 
-BalanceTest_SelectTest,"Let's see. Which test shall I run now?"
+BalanceTest_SelectTest,"Let's see. Which test shall I run?"
 
 BalanceTest_Button_ZeusVsSubT1Test,"Zeus Vs Substrate Frigates"
 BalanceTest_Button_AvengerVsSubT1Test,"Avenger Vs PHC Frigates"

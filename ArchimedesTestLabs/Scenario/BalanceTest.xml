@@ -30,20 +30,6 @@ M   -1056,832
 N   -3008,1632
 O   -4992,2336
 
-TODOS
-
-	* Add a failsafe
-	* Counter for tests maybe?
-	* Update message
-	* Tidy up first test references
-	* Clean up army references
-	* Clean up remaining references
-	* Setup scenario properly
-	
-	* Add more tests
-	
-	* Make more test scenarios
-
 -->
 
 <!-- PLAYER SETUP -->
