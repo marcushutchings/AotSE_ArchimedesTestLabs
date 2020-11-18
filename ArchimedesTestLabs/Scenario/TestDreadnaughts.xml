@@ -65,13 +65,13 @@ MISSING TESTS
     </Trigger>
 	
     <Trigger Name="tOpeningDialogue" Type="Timer" Timer="1" Inactive="1" >
-		<GrantStuff Player="0" Logistics="5000" />
+		<!-- <GrantStuff Player="0" Logistics="5000" /> -->
 		<Camera Position="-3000,1586" Speed="1" Snap="0" />
 		<Reveal Name="Reveal_Base" Position="-3000,1586" Size="3000" Enable="1" />
         <Dialog> 
             <Entry Icon="Narrator" Text="BalanceTest_BasicIntro_01a" />
         </Dialog>
-		<ActivateTrigger Target="tReclaimTestNode" />
+		<ActivateTrigger Target="tCleanUp_ReclaimTestNode" />
     </Trigger>
 	
 	<!-- Main Menu -->
@@ -147,23 +147,43 @@ MISSING TESTS
 	<Trigger Name="tSetupAndStartTest" Type="Timer" Timer="1" Inactive="1" >
 		<Var Name="vTestComplete_Signal"  Operation="=" Value="0" />
 	
-		<ActivateTrigger Target="tTestFails" />
-		<ActivateTrigger Target="tTestSucceeds" />
-		<ActivateTrigger Target="tTestCompleteEvent" />
+		<!-- <ActivateTrigger Target="tTestCompleteEvent" /> -->
 
 		<Var Name="vTestSetup_Probe"  Operation="=" Value="1" />
 	</Trigger>
 	
-	<Trigger Name="tTestFails" Type="ZoneCapture" Owner="2" Position="-3000,1586" Inactive="1" >
+	<Trigger Name="tTestFailure_AttackersCapturesNode" Type="ZoneCapture" Owner="2" Position="-3000,1586" Inactive="1" >
 		<Dialog>
 			<Entry Icon="Narrator" Text="BalanceTest_FailedResult"  />
 		</Dialog>
 		<Var Name="vTestFailed_Probe"  Operation="=" Value="1" />
-		<Var Name="vTestComplete_Signal"  Operation="=" Value="1" />
+		<ActivateTrigger Target="tTestCompleteEvent" />
 		<ActivateTrigger Target="tReviewResultBeforeClean" />
 	</Trigger>
 	
-	<Trigger Name="tTestSucceeds" Type="ZoneCapture" Owner="1" Position="-3000,1586" Inactive="1" >
+	<Trigger Name="tTestSucceess_DefenderCapturesNode" Type="ZoneCapture" Owner="1" Position="-3000,1586" Inactive="1" >
+		<Dialog>
+			<Entry Icon="Narrator" Text="BalanceTest_ExpectedResult"  />
+		</Dialog>
+		<Var Name="vTestSucceeded_Probe"  Operation="=" Value="1" />
+		<ActivateTrigger Target="tTestCompleteEvent" />
+		<ActivateTrigger Target="tReviewResultBeforeClean" />
+	</Trigger>
+	
+	<Trigger Name="tTestFails" Type="Timer" Timer="0" Inactive="1" >
+		<Dialog>
+			<Entry Icon="Narrator" Text="BalanceTest_FailedResult"  />
+		</Dialog>
+		<Var Name="vTestFailed_Probe"  Operation="=" Value="1" />
+		<ActivateTrigger Target="tTestCompleteEvent" />
+		<ActivateTrigger Target="tReviewResultBeforeClean" />
+	</Trigger>
+	
+	<Trigger Name="tTestCompleteEvent" Type="Timer" Timer="1" Inactive="1" >
+		<Var Name="vTestComplete_Signal"  Operation="=" Value="1" />
+	</Trigger>
+	
+	<Trigger Name="tTestSucceeds" Type="Timer" Timer="0" Inactive="1" >
 		<Dialog>
 			<Entry Icon="Narrator" Text="BalanceTest_ExpectedResult"  />
 		</Dialog>
@@ -182,18 +202,45 @@ MISSING TESTS
 	</Trigger>
 	
 	<Trigger Name="tCleanUpTest" Type="DialogChoice" Choice="cCleanUpTest" Inactive="1" >
-		<ActivateTrigger Target="tReclaimTestNode" />
+		<!-- <ActivateTrigger Target="tReclaimTestNode" /> -->
 		<Var Name="vTestCleanup_Probe"  Operation="=" Value="1" />
 	</Trigger>
 	
-	<Trigger Name="tReclaimTestNode" Type="Timer" Timer="1" Inactive="1">
+	<Trigger Name="tCleanUp_DestroyAllUnits" Type="Timer" Timer="1" Inactive="1">
+		<DestroyUnit  Name="uAttackLeader" />
+		<DestroyUnit  Name="uAttackLeader1" />
+		<DestroyUnit  Name="uAttackLeader2" />
+		<DestroyUnit  Name="uAttackLeader3" />
+		<DestroyUnit  Name="uAttackLeader4" />
+		<DestroyUnit  Name="uAttackLeader5" />
+		<DestroyUnit  Name="uAttackLeader6" />
+		<DestroyUnit  Name="uAttackLeader7" />
+		<DestroyUnit  Name="uAttackLeader8" />
+		<DestroyUnit  Name="uAttackLeader9" />
+		<DestroyUnit  Name="uAttackLeader10" />
+		<DestroyUnit  Name="uAttacker" />
+		<DestroyUnit  Name="uDefenceLeader" />
+		<DestroyUnit  Name="uDefenceLeader1" />
+		<DestroyUnit  Name="uDefenceLeader2" />
+		<DestroyUnit  Name="uDefenceLeader3" />
+		<DestroyUnit  Name="uDefenceLeader4" />
+		<DestroyUnit  Name="uDefenceLeader5" />
+		<DestroyUnit  Name="uDefenceLeader6" />
+		<DestroyUnit  Name="uDefenceLeader7" />
+		<DestroyUnit  Name="uDefenceLeader8" />
+		<DestroyUnit  Name="uDefenceLeader9" />
+		<DestroyUnit  Name="uDefenceLeader10" />
+		<DestroyUnit  Name="uDefender" />
+	</Trigger>
+	
+	<Trigger Name="tCleanUp_ReclaimTestNode" Type="Timer" Timer="1" Inactive="1">
 		<ActivateTrigger Target="tReclaimComplete" />
-		<SpawnUnit Name="Reclaimer" Template="PHC_3_Hyperion" Player="3" Position="-3000,1586,0" />
-		<CaptureNearest Name="Reclaimer" Repeat="0" />
+		<SpawnUnit Name="uReclaimer" Template="PHC_2_Engineer" Player="3" Position="-3000,1586,0" />
+		<CaptureNearest Name="uReclaimer" Repeat="0" />
 	</Trigger>
 	
 	<Trigger Name="tReclaimComplete" Type="ZoneCapture" Owner="3" Position="-3000,1586" Inactive="1" >
-		<DestroyUnit Name="Reclaimer" />
+		<DestroyUnit Name="uReclaimer" />
 		<ActivateTrigger Target="tMainMenu" />
 	</Trigger>
 	
@@ -206,7 +253,7 @@ MISSING TESTS
 		<CaptureNearest Name="uFailsafe" Repeat="0" />
 	</Trigger>
 	
-	<Trigger Name="tFailsafeAttackerSpawn" Type="Timer" Timer="0" NotOtherTrigger="tTestCompleteEvent" Inactive="1" >
+	<Trigger Name="tFailsafeuAttackerSpawn" Type="Timer" Timer="0" NotOtherTrigger="tTestCompleteEvent" Inactive="1" >
 		<SpawnUnit Name="uFailsafe" Template="PHC_2_Engineer" Player="2" Position="-3000,1586,0" />
 		<CaptureNearest Name="uFailsafe" Repeat="0" />
 	</Trigger>
@@ -214,69 +261,97 @@ MISSING TESTS
 	
 	<!-- Test 01: Hyperion vs Substrate Army -->
 	<Trigger Name="tTest1Start" Type="Var" Var="vTestSetup_Probe" Operator="==" Value="1" Inactive="1" >
+	
+		<!-- Initialize test -->
 		<Objective Name="oHyperionVsSubArmyTest"  String="BalanceTest_Obj_HyperionVsSubArmyTest" SetCheck="false" />
-		<ActivateTrigger Target="tTest1Fails" />
+		
+		<!-- Choosing win/lose conditions -->
+		<ActivateTrigger Target="tTestSucceess_DefenderCapturesNode" />
+		<ActivateTrigger Target="tTest1Failure_DefenderUnitDestroyed" />
+		
+		<!-- <ActivateTrigger Target="tTest1Fails" /> -->
 		<ActivateTrigger Target="tTest1Succeeds" />
 		<ActivateTrigger Target="tCleanUpTest1" />
 		<ActivateTrigger Target="tTest1Spawn" />
 		<ActivateTrigger Target="tTest1Failsafe" />
 		<ActivateTrigger Target="tTest1CompleteEvent" />
+				
+		<!-- Begin the test -->
+		<ActivateTrigger Target="tTest1MoveCmd1" />
 	</Trigger>
 	
 	<Trigger Name="tTest1Spawn" Type="Timer" Timer="1" Inactive="1" >
-		<SpawnUnit Name="DefenceLeader" Template="PHC_3_Hyperion" Player="1" Position="-2000,1086,0" />
-		<SpawnUnit Name="AttackLeader1"  Template="SS_2_Mauler" Player="2" Position="-4000,2086,0" />
-		<SpawnUnit Name="Attacker"  Parent="AttackLeader1" Template="SS_2_Avenger" Player="2" Position="-4000,2086,0" />
-		<SpawnUnit Name="Attacker"  Parent="AttackLeader1" Template="SS_2_Masochist" Player="2" Position="-4000,2086,0" />
-		<SpawnUnit Name="Attacker"  Parent="AttackLeader1" Template="SS_1_Reaper" Player="2" Position="-4000,2086,0" />
-		<SpawnUnit Name="Attacker"  Parent="AttackLeader1" Template="SS_1_Reaper" Player="2" Position="-4000,2086,0" />
-		<SpawnUnit Name="Attacker"  Parent="AttackLeader1" Template="SS_1_Reaper" Player="2" Position="-4000,2086,0" />
-		<SpawnUnit Name="Attacker"  Parent="AttackLeader1" Template="SS_1_Reaper" Player="2" Position="-4000,2086,0" />
-		<SpawnUnit Name="Attacker"  Parent="AttackLeader1" Template="SS_1_Martyr" Player="2" Position="-4000,2086,0" />
-		<SpawnUnit Name="Attacker"  Parent="AttackLeader1" Template="SS_1_Martyr" Player="2" Position="-4000,2086,0" />
-		<SpawnUnit Name="Attacker"  Parent="AttackLeader1" Template="SS_1_SkyCleanser" Player="2" Position="-4000,2086,0" />
-		<SpawnUnit Name="Attacker"  Parent="AttackLeader1" Template="SS_1_SkyCleanser" Player="2" Position="-4000,2086,0" />
-		<SpawnUnit Name="Attacker"  Parent="AttackLeader1" Template="SS_1_Capacitor" Player="2" Position="-4000,2086,0" />
-		<SpawnUnit Name="Attacker"  Parent="AttackLeader1" Template="SS_1_Capacitor" Player="2" Position="-4000,2086,0" />
-		<SpawnUnit Name="AttackLeader2"  Template="SS_2_Mauler" Player="2" Position="-4000,2086,0" />
-		<SpawnUnit Name="Attacker"  Parent="AttackLeader2" Template="SS_2_Avenger" Player="2" Position="-4000,2086,0" />
-		<SpawnUnit Name="Attacker"  Parent="AttackLeader2" Template="SS_1_Reaper" Player="2" Position="-4000,2086,0" />
-		<SpawnUnit Name="Attacker"  Parent="AttackLeader2" Template="SS_1_Reaper" Player="2" Position="-4000,2086,0" />
-		<SpawnUnit Name="Attacker"  Parent="AttackLeader2" Template="SS_1_Reaper" Player="2" Position="-4000,2086,0" />
-		<SpawnUnit Name="Attacker"  Parent="AttackLeader2" Template="SS_1_Reaper" Player="2" Position="-4000,2086,0" />
-		<SpawnUnit Name="Attacker"  Parent="AttackLeader2" Template="SS_1_Martyr" Player="2" Position="-4000,2086,0" />
-		<SpawnUnit Name="Attacker"  Parent="AttackLeader2" Template="SS_1_Martyr" Player="2" Position="-4000,2086,0" />
-		<SpawnUnit Name="Attacker"  Parent="AttackLeader2" Template="SS_1_SkyCleanser" Player="2" Position="-4000,2086,0" />
-		<SpawnUnit Name="Attacker"  Parent="AttackLeader2" Template="SS_1_SkyCleanser" Player="2" Position="-4000,2086,0" />
-		<SpawnUnit Name="Attacker"  Parent="AttackLeader2" Template="SS_2_DroneHive" Player="2" Position="-4000,2086,0" />
-		<SpawnUnit Name="Attacker"  Parent="AttackLeader2" Template="SS_1_Capacitor" Player="2" Position="-4000,2086,0" />
-		<SpawnUnit Name="AttackLeader3"  Template="SS_2_Mauler" Player="2" Position="-4000,2086,0" />
-		<SpawnUnit Name="Attacker"  Parent="AttackLeader3" Template="SS_2_Masochist" Player="2" Position="-4000,2086,0" />
-		<SpawnUnit Name="Attacker"  Parent="AttackLeader3" Template="SS_1_Reaper" Player="2" Position="-4000,2086,0" />
-		<SpawnUnit Name="Attacker"  Parent="AttackLeader3" Template="SS_1_Reaper" Player="2" Position="-4000,2086,0" />
-		<SpawnUnit Name="Attacker"  Parent="AttackLeader3" Template="SS_1_Reaper" Player="2" Position="-4000,2086,0" />
-		<SpawnUnit Name="Attacker"  Parent="AttackLeader3" Template="SS_1_Reaper" Player="2" Position="-4000,2086,0" />
-		<SpawnUnit Name="Attacker"  Parent="AttackLeader3" Template="SS_1_Martyr" Player="2" Position="-4000,2086,0" />
-		<SpawnUnit Name="Attacker"  Parent="AttackLeader3" Template="SS_1_Martyr" Player="2" Position="-4000,2086,0" />
-		<SpawnUnit Name="Attacker"  Parent="AttackLeader3" Template="SS_1_SkyCleanser" Player="2" Position="-4000,2086,0" />
-		<SpawnUnit Name="Attacker"  Parent="AttackLeader3" Template="SS_1_SkyCleanser" Player="2" Position="-4000,2086,0" />
-		<SpawnUnit Name="Attacker"  Parent="AttackLeader3" Template="SS_2_DroneHive" Player="2" Position="-4000,2086,0" />
-		<SpawnUnit Name="Attacker"  Parent="AttackLeader3" Template="SS_1_Capacitor" Player="2" Position="-4000,2086,0" />
-		<AttackAttackMove Name="AttackLeader1" Position="-3000,1586" />
-		<AttackAttackMove Name="AttackLeader2" Position="-3000,1586" />
-		<AttackAttackMove Name="AttackLeader3" Position="-3000,1586" />
-		<AttackAttackMove Name="DefenceLeader" Position="-3000,1586" />
+		<SpawnUnit Name="uDefenceLeader" Template="PHC_3_Hyperion" Player="1" Position="-2000,1086,0" />
+		
+		<SpawnUnit Name="uAttackLeader1"  Template="SS_2_Mauler" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="SS_2_Mauler" Player="2" Position="-4000,2086,0" />
+		
+		<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="SS_2_Mauler" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="SS_1_Reaper" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="SS_1_Reaper" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="SS_1_Reaper" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="SS_1_Reaper" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="SS_1_Martyr" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="SS_1_Martyr" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="SS_1_SkyCleanser" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="SS_1_SkyCleanser" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="SS_1_Capacitor" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="SS_1_Capacitor" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="uAttackLeader2"  Template="SS_2_Avenger" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="uAttacker"  Parent="uAttackLeader2" Template="SS_2_Avenger" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="uAttacker"  Parent="uAttackLeader2" Template="SS_1_Reaper" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="uAttacker"  Parent="uAttackLeader2" Template="SS_1_Reaper" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="uAttacker"  Parent="uAttackLeader2" Template="SS_1_Reaper" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="uAttacker"  Parent="uAttackLeader2" Template="SS_1_Reaper" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="uAttacker"  Parent="uAttackLeader2" Template="SS_1_Martyr" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="uAttacker"  Parent="uAttackLeader2" Template="SS_1_Martyr" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="uAttacker"  Parent="uAttackLeader2" Template="SS_1_SkyCleanser" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="uAttacker"  Parent="uAttackLeader2" Template="SS_1_SkyCleanser" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="uAttacker"  Parent="uAttackLeader2" Template="SS_2_DroneHive" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="uAttacker"  Parent="uAttackLeader2" Template="SS_1_Capacitor" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="uAttackLeader3"  Template="SS_2_Masochist" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="uAttacker"  Parent="uAttackLeader3" Template="SS_2_Masochist" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="uAttacker"  Parent="uAttackLeader3" Template="SS_1_Reaper" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="uAttacker"  Parent="uAttackLeader3" Template="SS_1_Reaper" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="uAttacker"  Parent="uAttackLeader3" Template="SS_1_Reaper" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="uAttacker"  Parent="uAttackLeader3" Template="SS_1_Reaper" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="uAttacker"  Parent="uAttackLeader3" Template="SS_1_Martyr" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="uAttacker"  Parent="uAttackLeader3" Template="SS_1_Martyr" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="uAttacker"  Parent="uAttackLeader3" Template="SS_1_SkyCleanser" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="uAttacker"  Parent="uAttackLeader3" Template="SS_1_SkyCleanser" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="uAttacker"  Parent="uAttackLeader3" Template="SS_2_DroneHive" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="uAttacker"  Parent="uAttackLeader3" Template="SS_1_Capacitor" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="uAttackLeader4"  Template="SS_2_Mauler" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="uAttackLeader5"  Template="SS_2_Mauler" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="uAttackLeader6"  Template="SS_2_Mauler" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="uAttackLeader7"  Template="SS_2_Mauler" Player="2" Position="-4000,2086,0" />
+	</Trigger>
+	
+	<Trigger Name="tTest1MoveCmd1" Type="Timer" Timer="1" Inactive="1" >
+		<AttackAttackMove Name="uAttackLeader1" Position="-2000,1086" />
+		<AttackAttackMove Name="uAttackLeader2" Position="-2000,1086" />
+		<AttackAttackMove Name="uAttackLeader3" Position="-2000,1086" />
+		<AttackAttackMove Name="uDefenceLeader" Position="-3000,1586" />
+		<CaptureNearestNext Name="uDefenceLeader" Repeat="0" />
+		<ActivateTrigger Target="tTest1MoveCmd2" />
+	</Trigger>
+	
+	<Trigger Name="tTest1MoveCmd2" Type="Timer" Timer="1" Inactive="1" >
+		<AttackAttackMove Name="uAttackLeader1" Position="-3000,1586" />
+		<AttackAttackMove Name="uAttackLeader2" Position="-3000,1586" />
+		<AttackAttackMove Name="uAttackLeader3" Position="-3000,1586" />
 	</Trigger>
 
-	<Trigger Name="tTest1Failsafe" Type="Timer" Timer="80" NotOtherTrigger="tTest1CompleteEvent" Inactive="1" >
+	<!-- <Trigger Name="tTest1Failsafe" Type="Timer" Timer="80" NotOtherTrigger="tTest1CompleteEvent" Inactive="1" >
 		<ActivateTrigger Target="tFailsafeDefenderSpawn" />
-	</Trigger>
-
-	<Trigger Name="tTest1Fails" Type="Var" Var="vTestFailed_Probe" Operator="==" Value="1" NotOtherTrigger="tTest1Succeeds" Inactive="1" >
+	</Trigger> -->
+	
+	<Trigger Name="tTest1Failure_DefenderUnitDestroyed" Type="Destruction" IsBuilding="0" Target="uDefenceLeader" NotOtherTrigger="tTest1CompleteEvent" Inactive="1" >
+		<ActivateTrigger Target="tTestFails" />
 		<Objective Name="oHyperionVsSubArmyTest" String="BalanceTest_Obj_HyperionVsSubArmyTest_Failed" SetCheck="false" />
 	</Trigger>
 	
-	<Trigger Name="tTest1Succeeds" Type="Var" Var="vTestSucceeded_Probe" Operator="==" Value="1" NotOtherTrigger="tTest1Fails"  Inactive="1" >
+	<Trigger Name="tTest1Succeeds" Type="Var" Var="vTestSucceeded_Probe" Operator="==" Value="1" NotOtherTrigger="tTest1CompleteEvent"  Inactive="1" >
 		<Objective Name="oHyperionVsSubArmyTest" SetCheck="true" />
 	</Trigger>
 	
@@ -284,11 +359,8 @@ MISSING TESTS
 	</Trigger>
 	
 	<Trigger Name="tCleanUpTest1" Type="Var" Var="vTestCleanup_Probe" Operator="==" Value="1" Inactive="1" >
-		<DestroyUnit  Name="AttackLeader1" />
-		<DestroyUnit  Name="AttackLeader2" />
-		<DestroyUnit  Name="AttackLeader3" />
-		<DestroyUnit  Name="Attacker" />
-		<DestroyUnit  Name="DefenceLeader" />
+		<ActivateTrigger Target="tCleanUp_DestroyAllUnits" />
+		<ActivateTrigger Target="tCleanUp_ReclaimTestNode" />
 	</Trigger>
 	
 	
@@ -306,11 +378,11 @@ MISSING TESTS
 	<Trigger Name="tTest2Spawn" Type="Timer" Timer="1" Inactive="1" >
 		<SpawnUnit Name="DefenceLeader" Template="SS_2_Avenger" Player="1" Position="-2000,1086,0" />
 		<SpawnUnit Name="AttackLeader"  Template="PHC_1_Brute" Player="2" Position="-4000,2086,0" />
-		<SpawnUnit Name="Attacker"  Parent="AttackLeader" Template="PHC_1_Brute" Player="2" Position="-4000,2086,0" />
-		<SpawnUnit Name="Attacker"  Parent="AttackLeader" Template="PHC_1_Brute" Player="2" Position="-4000,2086,0" />
-		<SpawnUnit Name="Attacker"  Parent="AttackLeader" Template="PHC_1_Archer" Player="2" Position="-4000,2086,0" />
-		<SpawnUnit Name="Attacker"  Parent="AttackLeader" Template="PHC_1_Archer" Player="2" Position="-4000,2086,0" />
-		<SpawnUnit Name="Attacker"  Parent="AttackLeader" Template="PHC_1_Archer" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="uAttacker"  Parent="AttackLeader" Template="PHC_1_Brute" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="uAttacker"  Parent="AttackLeader" Template="PHC_1_Brute" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="uAttacker"  Parent="AttackLeader" Template="PHC_1_Archer" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="uAttacker"  Parent="AttackLeader" Template="PHC_1_Archer" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="uAttacker"  Parent="AttackLeader" Template="PHC_1_Archer" Player="2" Position="-4000,2086,0" />
 		<AttackAttackMove Name="AttackLeader" Position="-3000,1586" />
 		<AttackAttackMove Name="DefenceLeader" Position="-3000,1586" />
 	</Trigger>
@@ -319,11 +391,11 @@ MISSING TESTS
 		<ActivateTrigger Target="tFailsafeDefenderSpawn" />
 	</Trigger>
 
-	<Trigger Name="tTest2Fails" Type="Var" Var="vTestFailed_Probe" Operator="==" Value="1" NotOtherTrigger="tTest2Succeeds" Inactive="1" >
+	<Trigger Name="tTest2Fails" Type="Var" Var="vTestFailed_Probe" Operator="==" Value="1" NotOtherTrigger="tTest2CompleteEvent" Inactive="1" >
 		<Objective Name="AvengerVsPhcT1" String="BalanceTest_Obj_AvengerVsPhcT1_Failed" SetCheck="false" />
 	</Trigger>
 	
-	<Trigger Name="tTest2Succeeds" Type="Var" Var="vTestSucceeded_Probe" Operator="==" Value="1" NotOtherTrigger="tTest2Fails" Inactive="1" >
+	<Trigger Name="tTest2Succeeds" Type="Var" Var="vTestSucceeded_Probe" Operator="==" Value="1" NotOtherTrigger="tTest2CompleteEvent" Inactive="1" >
 		<Objective Name="AvengerVsPhcT1" SetCheck="true" />
 	</Trigger>
 	
@@ -331,9 +403,8 @@ MISSING TESTS
 	</Trigger>
 	
 	<Trigger Name="tTest2CleanUp" Type="Var" Var="vTestCleanup_Probe" Operator="==" Value="1" Inactive="1" >
-		<DestroyUnit  Name="AttackLeader" />
-		<DestroyUnit  Name="Attacker" />
-		<DestroyUnit  Name="DefenceLeader" />
+		<ActivateTrigger Target="tCleanUp_DestroyAllUnits" />
+		<ActivateTrigger Target="tCleanUp_ReclaimTestNode" />
 	</Trigger>
 	
 	
@@ -352,8 +423,8 @@ MISSING TESTS
 		<SpawnUnit Name="DefenceLeader" Template="SS_2_Mauler" Player="1" Position="-2000,1086,0" />
 		<SpawnUnit Name="Defender"  Parent="DefenceLeader" Template="SS_2_Mauler" Player="1" Position="-2000,1086,0" />
 		<SpawnUnit Name="AttackLeader"  Template="PHC_2_Zeus" Player="2" Position="-4000,2086,0" />
-		<SpawnUnit Name="Attacker"  Parent="AttackLeader" Template="PHC_2_Zeus" Player="2" Position="-4000,2086,0" />
-		<SpawnUnit Name="Attacker"  Parent="AttackLeader" Template="PHC_2_Zeus" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="uAttacker"  Parent="AttackLeader" Template="PHC_2_Zeus" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="uAttacker"  Parent="AttackLeader" Template="PHC_2_Zeus" Player="2" Position="-4000,2086,0" />
 		<AttackAttackMove Name="AttackLeader" Position="-3000,1586" />
 		<AttackAttackMove Name="DefenceLeader" Position="-3000,1586" />
 	</Trigger>
@@ -377,7 +448,7 @@ MISSING TESTS
 		<DestroyUnit  Name="AttackLeader" />
 		<DestroyUnit  Name="Defender" />
 		<DestroyUnit  Name="DefenceLeader" />
-		<DestroyUnit  Name="Attacker" />
+		<DestroyUnit  Name="uAttacker" />
 	</Trigger>
 	
 	
@@ -400,7 +471,7 @@ MISSING TESTS
 	</Trigger>
 	
 	<Trigger Name="tTest4Failsafe" Type="Timer" Timer="50" NotOtherTrigger="tTest4CompleteEvent" Inactive="1" >
-		<ActivateTrigger Target="tFailsafeAttackerSpawn" />
+		<ActivateTrigger Target="tFailsafeuAttackerSpawn" />
 	</Trigger>
 
 	<Trigger Name="tTest4Fails" Type="Var" Var="vTestFailed_Probe" Operator="==" Value="1" NotOtherTrigger="tTest4Succeeds" Inactive="1" >
@@ -435,8 +506,8 @@ MISSING TESTS
 		<SpawnUnit Name="DefenceLeader" Template="PHC_2_Athena" Player="1" Position="-2000,1086,0" />
 		<SpawnUnit Name="Defender"  Parent="DefenceLeader" Template="PHC_2_Athena" Player="1" Position="-2000,1086,0" />
 		<SpawnUnit Name="AttackLeader"  Template="SS_2_Avenger" Player="2" Position="-4000,2086,0" />
-		<SpawnUnit Name="Attacker"  Parent="AttackLeader" Template="SS_2_Avenger" Player="2" Position="-4000,2086,0" />
-		<SpawnUnit Name="Attacker"  Parent="AttackLeader" Template="SS_2_Avenger" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="uAttacker"  Parent="AttackLeader" Template="SS_2_Avenger" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="uAttacker"  Parent="AttackLeader" Template="SS_2_Avenger" Player="2" Position="-4000,2086,0" />
 		<AttackAttackMove Name="AttackLeader" Position="-3000,1586" />
 		<AttackAttackMove Name="DefenceLeader" Position="-3000,1586" />
 	</Trigger>
@@ -460,7 +531,7 @@ MISSING TESTS
 		<DestroyUnit  Name="AttackLeader" />
 		<DestroyUnit  Name="Defender" />
 		<DestroyUnit  Name="DefenceLeader" />
-		<DestroyUnit  Name="Attacker" />
+		<DestroyUnit  Name="uAttacker" />
 	</Trigger>
 	
 	
@@ -483,7 +554,7 @@ MISSING TESTS
 	</Trigger>
 	
 	<Trigger Name="tTest6Failsafe" Type="Timer" Timer="50" NotOtherTrigger="tTest6CompleteEvent" Inactive="1" >
-		<ActivateTrigger Target="tFailsafeAttackerSpawn" />
+		<ActivateTrigger Target="tFailsafeuAttackerSpawn" />
 	</Trigger>
 
 	<Trigger Name="tTest6Fails" Type="Var" Var="vTestFailed_Probe" Operator="==" Value="1" NotOtherTrigger="tTest6Succeeds" Inactive="1" >
