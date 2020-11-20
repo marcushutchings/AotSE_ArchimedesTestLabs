@@ -1,7 +1,7 @@
 Key,Translated String
 ScenarioTestDreadnaughts_Title,Archimedes Test Labs: Dreadnaughts
 ScenarioTestDreadnaughts_Description,A specially designed scenario to test in-game balance
-ScenarioTestDreadnaughts_Synopsis,Archimedes evaluates the relative efffectiveness of Dreadnaughts.
+ScenarioTestDreadnaughts_Synopsis,Archimedes evaluates the relative effectiveness of Dreadnaughts.
 
 BalanceTest_Button_HyperionVsSubArmyTest,"Hyperion vs Substrate Army"
 BalanceTest_Button_RetributorVsPhcArmyTest,"Retributor vs PHC Army"

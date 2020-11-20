@@ -1,7 +1,7 @@
 Key,Translated String
 ScenarioBalanceTest_Title,Archimedes Test Labs: Cruisers
 ScenarioBalanceTest_Description,A specially designed scenario to test in-game balance
-ScenarioBalanceTest_Synopsis,Archimedes evaluates the relative efffectiveness of Cruisers.
+ScenarioBalanceTest_Synopsis,Archimedes evaluates the relative effectiveness of Cruisers.
 
 BalanceTest_Player,"Archimedes"
 BalanceTest_Player_AI_1,"System Alpha"
