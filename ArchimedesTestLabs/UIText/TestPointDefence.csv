@@ -1,0 +1,10 @@
+Key,Translated String
+ScenarioTestPointDefence_Title,Archimedes Test Labs: Point Defence
+ScenarioTestPointDefence_Description,A specially designed scenario to test in-game balance
+ScenarioTestPointDefence_Synopsis,Archimedes evaluates the relative effectiveness of Point Defence.
+
+BalanceTest_Button_SentinalVsAthenaTest,"Sentinel Turrets vs Athenas"
+BalanceTest_Obj_SentinalVsAthenaTest,"Sentinel Turrets vs Athenas"
+BalanceTest_Obj_SentinalVsAthenaTest_Failed,"Sentinel Turrets vs Athenas (failed)"
+
+
