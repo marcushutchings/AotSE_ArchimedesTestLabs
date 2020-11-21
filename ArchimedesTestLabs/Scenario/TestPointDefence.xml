@@ -297,17 +297,17 @@ MISSING TESTS
 		<SpawnBuilding Name="sPointDefence3" Template="PHC_Sentinel" Player="1" Position="-2800,1736,0" />
 		<SpawnBuilding Name="sPointDefence4" Template="PHC_Sentinel" Player="1" Position="-2800,1886,0" />
 		
-		<!-- <SpawnUnit Name="uAttackLeader1"  Template="PHC_2_Athena" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="uAttackLeader1"  Template="PHC_2_Athena" Player="2" Position="-4000,2086,0" />
 			<SpawnUnit Name="uAttacker1"  Parent="uAttackLeader1" Template="PHC_2_Athena" Player="2" Position="-4000,2086,0" />
 			<SpawnUnit Name="uAttacker2"  Parent="uAttackLeader1" Template="PHC_2_Athena" Player="2" Position="-4000,2086,0" />
 			<SpawnUnit Name="uAttacker3"  Parent="uAttackLeader1" Template="PHC_2_Athena" Player="2" Position="-4000,2086,0" />
-			<SpawnUnit Name="uAttacker4"  Parent="uAttackLeader1" Template="PHC_2_Athena" Player="2" Position="-4000,2086,0" /> -->
+			<SpawnUnit Name="uAttacker4"  Parent="uAttackLeader1" Template="PHC_2_Athena" Player="2" Position="-4000,2086,0" />
 			
-		<SpawnUnit Name="uAttackLeader1"  Template="SS_2_Mauler" Player="2" Position="-4000,2086,0" />
+		<!-- <SpawnUnit Name="uAttackLeader1"  Template="SS_2_Mauler" Player="2" Position="-4000,2086,0" />
 			<SpawnUnit Name="uAttacker1"  Parent="uAttackLeader1" Template="SS_2_Mauler" Player="2" Position="-4000,2086,0" />
 			<SpawnUnit Name="uAttacker2"  Parent="uAttackLeader1" Template="SS_2_Mauler" Player="2" Position="-4000,2086,0" />
 			<SpawnUnit Name="uAttacker3"  Parent="uAttackLeader1" Template="SS_2_Mauler" Player="2" Position="-4000,2086,0" />
-			<SpawnUnit Name="uAttacker4"  Parent="uAttackLeader1" Template="SS_2_Mauler" Player="2" Position="-4000,2086,0" />
+			<SpawnUnit Name="uAttacker4"  Parent="uAttackLeader1" Template="SS_2_Mauler" Player="2" Position="-4000,2086,0" /> -->
 	</Trigger>
 	
 	<Trigger Name="tTest1MoveCmd1" Type="Timer" Timer="1" Inactive="1" >
