@@ -93,6 +93,7 @@ MISSING TESTS
 		<Dialog>
 			<Entry Icon="Narrator" Text="BalanceTest_SelectTest" >
 				<Choice Text="BalanceTest_Button_SentinalVsAthenaTest" Id="cTest1" />
+				<Choice Text="BalanceTest_Button_SmartyVsSsFriagtesTest" Id="cTest2" />
 				<Choice Text="BalanceTest_Button_Exit" Id="cExitSimulation" />
 			</Entry>
 		</Dialog>
@@ -223,6 +224,7 @@ MISSING TESTS
 		<DestroyUnit  Name="uAttacker2" />
 		<DestroyUnit  Name="uAttacker3" />
 		<DestroyUnit  Name="uAttacker4" />
+		<DestroyUnit  Name="uAttacker5" />
 		<DestroyUnit  Name="uDefenceLeader" />
 		<DestroyUnit  Name="uDefenceLeader1" />
 		<DestroyUnit  Name="uDefenceLeader2" />
@@ -325,6 +327,15 @@ MISSING TESTS
 		<CaptureNearestNext Name="uAttackLeader5" Repeat="0" />
 		<CaptureNearestNext Name="uAttackLeader6" Repeat="0" />
 		<CaptureNearestNext Name="uAttackLeader7" Repeat="0" />
+		<CaptureNearestNext Name="uAttackLeader8" Repeat="0" />
+		<CaptureNearestNext Name="uAttackLeader9" Repeat="0" />
+		<CaptureNearestNext Name="uAttackLeader10" Repeat="0" />
+		<CaptureNearestNext Name="uAttackLeader11" Repeat="0" />
+		<CaptureNearestNext Name="uAttackLeader12" Repeat="0" />
+		<CaptureNearestNext Name="uAttackLeader13" Repeat="0" />
+		<CaptureNearestNext Name="uAttackLeader14" Repeat="0" />
+		<CaptureNearestNext Name="uAttackLeader15" Repeat="0" />
+		<CaptureNearestNext Name="uAttackLeader16" Repeat="0" />
 		<!--<AttackAttackMove Name="uDefenceLeader" Position="-3000,1586" />-->
 		<AttackAttackMove Name="uDefenceLeader" Position="-3000,1586" />
 		<AttackAttackMove Name="uDefenceLeader1" Position="-3000,1586" />
@@ -372,7 +383,7 @@ MISSING TESTS
 	<Trigger Name="tTest2Start" Type="Var" Var="vTestSetup_Probe" Operator="==" Value="1" Inactive="1" >
 	
 		<!-- Initialize test -->
-		<Objective Name="oRetributorVsPhcArmyTest"  String="BalanceTest_Obj_RetributorVsPhcArmyTest" SetCheck="false" />
+		<Objective Name="oSmartyVsSsFrigates"  String="BalanceTest_Button_SmartyVsSsFriagtesTest" SetCheck="false" />
 		
 		<!-- Choosing win/lose conditions -->
 		<ActivateTrigger Target="tTestSucceess_DefenderCapturesNode" />
@@ -390,133 +401,188 @@ MISSING TESTS
 	</Trigger>
 	
 	<Trigger Name="tTest2Spawn" Type="Timer" Timer="1" Inactive="1" >
-		<SpawnUnit Name="uDefenceLeader" Template="SS_3_Retributor" Player="1" Position="-2500,1586,0" />
-		<SpawnUnit Name="uDefenceLeader1" Template="SS_2_Mauler" Player="1" Position="-2000,1086,0" />
-			<SpawnUnit Name="uDefender"  Parent="uDefenceLeader1" Template="SS_2_Mauler" Player="1" Position="-2000,1086,0" />
-			<SpawnUnit Name="uDefender"  Parent="uDefenceLeader1" Template="SS_2_Mauler" Player="1" Position="-2000,1086,0" />
-			<SpawnUnit Name="uDefender"  Parent="uDefenceLeader1" Template="SS_2_Mauler" Player="1" Position="-2000,1086,0" />
-			<SpawnUnit Name="uDefender"  Parent="uDefenceLeader1" Template="SS_1_Capacitor" Player="1" Position="-2000,1086,0" />
-		<SpawnUnit Name="uDefenceLeader2"  Template="SS_2_Avenger" Player="1" Position="-2000,1086,0" />
-			<SpawnUnit Name="uDefender"  Parent="uDefenceLeader2" Template="SS_2_Avenger" Player="1" Position="-2000,1086,0" />
-			<SpawnUnit Name="uDefender"  Parent="uDefenceLeader2" Template="SS_2_Avenger" Player="1" Position="-2000,1086,0" />
-			<SpawnUnit Name="uDefender"  Parent="uDefenceLeader2" Template="SS_2_Avenger" Player="1" Position="-2000,1086,0" />
-		<SpawnUnit Name="uDefenceLeader3"  Template="SS_2_Destructor" Player="1" Position="-2000,1086,0" />
-			<SpawnUnit Name="uDefender"  Parent="uDefenceLeader3" Template="SS_2_Destructor" Player="1" Position="-2000,1086,0" />
-			<SpawnUnit Name="uDefender"  Parent="uDefenceLeader3" Template="SS_2_Destructor" Player="1" Position="-2000,1086,0" />
-		<SpawnUnit Name="uDefenceLeader4"  Template="SS_1_Martyr" Player="1" Position="-2000,1086,0" />
-			<SpawnUnit Name="uDefender"  Parent="uDefenceLeader4" Template="SS_1_Martyr" Player="1" Position="-2000,1086,0" />
-			<SpawnUnit Name="uDefender"  Parent="uDefenceLeader4" Template="SS_1_Martyr" Player="1" Position="-2000,1086,0" />
-			<SpawnUnit Name="uDefender"  Parent="uDefenceLeader4" Template="SS_1_Reaper" Player="1" Position="-2000,1086,0" />
-			<SpawnUnit Name="uDefender"  Parent="uDefenceLeader4" Template="SS_1_Reaper" Player="1" Position="-2000,1086,0" />
-			<SpawnUnit Name="uDefender"  Parent="uDefenceLeader4" Template="SS_1_Reaper" Player="1" Position="-2000,1086,0" />
-			<SpawnUnit Name="uDefender"  Parent="uDefenceLeader4" Template="SS_1_Reaper" Player="1" Position="-2000,1086,0" />
-			<SpawnUnit Name="uDefender"  Parent="uDefenceLeader4" Template="SS_1_Capacitor" Player="1" Position="-2000,1086,0" />
-		<SpawnUnit Name="uDefenceLeader5"  Template="SS_1_Martyr" Player="1" Position="-2000,1086,0" />
-			<SpawnUnit Name="uDefender"  Parent="uDefenceLeader5" Template="SS_1_Martyr" Player="1" Position="-2000,1086,0" />
-			<SpawnUnit Name="uDefender"  Parent="uDefenceLeader5" Template="SS_1_Martyr" Player="1" Position="-2000,1086,0" />
-			<SpawnUnit Name="uDefender"  Parent="uDefenceLeader5" Template="SS_1_Reaper" Player="1" Position="-2000,1086,0" />
-			<SpawnUnit Name="uDefender"  Parent="uDefenceLeader5" Template="SS_1_Reaper" Player="1" Position="-2000,1086,0" />
-			<SpawnUnit Name="uDefender"  Parent="uDefenceLeader5" Template="SS_1_Reaper" Player="1" Position="-2000,1086,0" />
-			<SpawnUnit Name="uDefender"  Parent="uDefenceLeader5" Template="SS_1_Reaper" Player="1" Position="-2000,1086,0" />
-			<SpawnUnit Name="uDefender"  Parent="uDefenceLeader5" Template="SS_1_Capacitor" Player="1" Position="-2000,1086,0" />
-		<SpawnUnit Name="uDefenceLeader6"  Template="SS_1_Martyr" Player="1" Position="-2000,1086,0" />
-			<SpawnUnit Name="uDefender"  Parent="uDefenceLeader6" Template="SS_1_Martyr" Player="1" Position="-2000,1086,0" />
-			<SpawnUnit Name="uDefender"  Parent="uDefenceLeader6" Template="SS_1_Reaper" Player="1" Position="-2000,1086,0" />
-			<SpawnUnit Name="uDefender"  Parent="uDefenceLeader6" Template="SS_1_Reaper" Player="1" Position="-2000,1086,0" />
-			<SpawnUnit Name="uDefender"  Parent="uDefenceLeader6" Template="SS_1_Reaper" Player="1" Position="-2000,1086,0" />
-			<SpawnUnit Name="uDefender"  Parent="uDefenceLeader6" Template="SS_1_Reaper" Player="1" Position="-2000,1086,0" />
-			<SpawnUnit Name="uDefender"  Parent="uDefenceLeader6" Template="SS_1_Capacitor" Player="1" Position="-2000,1086,0" />
-		<SpawnUnit Name="uDefenceLeader7"  Template="SS_2_DroneHive" Player="1" Position="-2000,1086,0" />
-			<SpawnUnit Name="uDefender"  Parent="uDefenceLeader7" Template="SS_2_DroneHive" Player="1" Position="-2000,1086,0" />
-			<SpawnUnit Name="uDefender"  Parent="uDefenceLeader7" Template="SS_1_SkyCleanser" Player="1" Position="-2000,1086,0" />
-			<SpawnUnit Name="uDefender"  Parent="uDefenceLeader7" Template="SS_1_SkyCleanser" Player="1" Position="-2000,1086,0" />
-			<SpawnUnit Name="uDefender"  Parent="uDefenceLeader7" Template="SS_1_SkyCleanser" Player="1" Position="-2000,1086,0" />
-			<SpawnUnit Name="uDefender"  Parent="uDefenceLeader7" Template="SS_1_SkyCleanser" Player="1" Position="-2000,1086,0" />
-			<SpawnUnit Name="uDefender"  Parent="uDefenceLeader7" Template="SS_1_SkyCleanser" Player="1" Position="-2000,1086,0" />
-			<SpawnUnit Name="uDefender"  Parent="uDefenceLeader7" Template="SS_1_SkyCleanser" Player="1" Position="-2000,1086,0" />
+	
+		<!-- <SpawnBuilding Name="sPointDefence1" Template="PHC_DroneBay" Player="1" Position="-2900,1586,0" /> -->
+		<!-- <SpawnBuilding Name="sPointDefence1" Template="PHC_EliminatorTurret" Player="1" Position="-2900,1586,0" /> -->
+		<!-- <SpawnBuilding Name="sPointDefence1" Template="PHC_OblivionTurret" Player="1" Position="-2900,1586,0" /> -->
 		
-		<SpawnUnit Name="uAttackLeader1"  Template="PHC_2_Athena" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_2_Athena" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_2_Athena" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_2_Athena" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_1_Medic" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_2_Athena" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_2_Athena" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_2_Athena" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_2_Athena" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_1_Medic" Player="2" Position="-5000,2586,0" />
-		<SpawnUnit Name="uAttackLeader2"  Template="PHC_2_Zeus" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader2" Template="PHC_2_Zeus" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader2" Template="PHC_2_Zeus" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader2" Template="PHC_2_Zeus" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader2" Template="PHC_2_Zeus" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader2" Template="PHC_2_Zeus" Player="2" Position="-5000,2586,0" />
-		<SpawnUnit Name="uAttackLeader3"  Template="PHC_2_Artemis" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader3" Template="PHC_2_Artemis" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader3" Template="PHC_2_Artemis" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader3" Template="PHC_2_Artemis" Player="2" Position="-5000,2586,0" />
-		<SpawnUnit Name="uAttackLeader4"  Template="PHC_1_Brute" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader4" Template="PHC_1_Brute" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader4" Template="PHC_1_Archer" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader4" Template="PHC_1_Archer" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader4" Template="PHC_1_Archer" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader4" Template="PHC_1_Archer" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader4" Template="PHC_1_Medic" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader4" Template="PHC_1_Brute" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader4" Template="PHC_1_Brute" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader4" Template="PHC_1_Archer" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader4" Template="PHC_1_Archer" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader4" Template="PHC_1_Archer" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader4" Template="PHC_1_Archer" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader4" Template="PHC_1_Medic" Player="2" Position="-5000,2586,0" />
-		<SpawnUnit Name="uAttackLeader5"  Template="PHC_1_Brute" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader5" Template="PHC_1_Brute" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader5" Template="PHC_1_Archer" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader5" Template="PHC_1_Archer" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader5" Template="PHC_1_Archer" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader5" Template="PHC_1_Archer" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader5" Template="PHC_1_Medic" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader5" Template="PHC_1_Brute" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader5" Template="PHC_1_Brute" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader5" Template="PHC_1_Archer" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader5" Template="PHC_1_Archer" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader5" Template="PHC_1_Archer" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader5" Template="PHC_1_Archer" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader5" Template="PHC_1_Medic" Player="2" Position="-5000,2586,0" />
-		<SpawnUnit Name="uAttackLeader6"  Template="PHC_1_Brute" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader6" Template="PHC_1_Brute" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader6" Template="PHC_1_Archer" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader6" Template="PHC_1_Archer" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader6" Template="PHC_1_Archer" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader6" Template="PHC_1_Archer" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader6" Template="PHC_1_Medic" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader6" Template="PHC_1_Brute" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader6" Template="PHC_1_Brute" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader6" Template="PHC_1_Archer" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader6" Template="PHC_1_Archer" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader6" Template="PHC_1_Archer" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader6" Template="PHC_1_Archer" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader6" Template="PHC_1_Medic" Player="2" Position="-5000,2586,0" />
-		<SpawnUnit Name="uAttackLeader7"  Template="PHC_2_Apollo" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader7" Template="PHC_2_Apollo" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader7" Template="PHC_2_Apollo" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader7" Template="PHC_2_Apollo" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader7" Template="PHC_A_Instigator" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader7" Template="PHC_A_Instigator" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader7" Template="PHC_A_Instigator" Player="2" Position="-5000,2586,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader7" Template="PHC_A_Instigator" Player="2" Position="-5000,2586,0" />
+		<!-- <SpawnBuilding Name="sPointDefence1" Template="PHC_BarragerTurret" Player="1" Position="-2900,1586,0" /> -->
+		
+		<!-- <SpawnBuilding Name="sPointDefence1" Template="PHC_EmergencyTurret" Player="1" Position="-2800,1586,0" /> -->
+		<!-- <SpawnBuilding Name="sPointDefence1" Template="SS_SerpentineTurret" Player="1" Position="-2800,1586,0" /> -->
+		<!-- <SpawnBuilding Name="sPointDefence2" Template="PHC_Constable" Player="1" Position="-2800,1436,0" />
+		<SpawnBuilding Name="sPointDefence3" Template="PHC_Constable" Player="1" Position="-2800,1736,0" />
+		<SpawnBuilding Name="sPointDefence4" Template="PHC_Constable" Player="1" Position="-2800,1886,0" /> -->
+		
+		<SpawnBuilding Name="sPointDefence1" Template="PHC_MinosCannon" Player="1" Position="-3000,1586,0" />
+		<SpawnBuilding Name="sPointDefence1" Template="PHC_Constable" Player="1" Position="-2900,1586,0" />
+		<SpawnBuilding Name="sPointDefence1" Template="PHC_Constable" Player="1" Position="-2800,1586,0" />
+		<SpawnBuilding Name="sPointDefence2" Template="PHC_Constable" Player="1" Position="-2800,1436,0" />
+		<SpawnBuilding Name="sPointDefence3" Template="PHC_Constable" Player="1" Position="-2800,1736,0" />
+		<SpawnBuilding Name="sPointDefence4" Template="PHC_Constable" Player="1" Position="-2800,1886,0" />
+		
+		
+		<SpawnUnit Name="uAttackLeader1"  Parent="uAttackLeader1" Template="SS_A_AirHarbinger" Player="0" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="SS_A_AirHarbinger" Player="0" Position="-4200,2186,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="SS_A_AirHarbinger" Player="0" Position="-4200,2386,0" />
+			<!-- <SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="SS_A_AirHarbinger" Player="0" Position="-4000,2486,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="SS_A_AirHarbinger" Player="0" Position="-4000,2086,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="SS_A_AirHarbinger" Player="0" Position="-4200,2586,0" /> -->
+		
+		<!-- <SpawnUnit Name="uAttackLeader1"  Parent="uAttackLeader1" Template="PHC_1_Brute" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_1_Archer" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_1_Archer" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_1_Brute" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_1_Atlas" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_1_Atlas" Player="2" Position="-4000,2286,0" /> -->
+		
+		<!-- <SpawnUnit Name="uAttackLeader1"  Parent="uAttackLeader1" Template="PHC_1_Sentry" Player="2" Position="-3000,1586,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_1_Sentry" Player="2" Position="-3000,1586,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_1_Sentry" Player="2" Position="-3000,1586,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_1_Sentry" Player="2" Position="-3000,1586,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_1_Sentry" Player="2" Position="-3000,1586,0" /> -->
+		
+		<!-- <SpawnUnit Name="uAttackLeader1"  Parent="uAttackLeader1" Template="SS_1_Saboteur" Player="2" Position="-3000,1586,0" /> -->
+		
+		<!-- <SpawnUnit Name="uAttackLeader1"  Parent="uAttackLeader1" Template="SS_A_AirHarbinger" Player="2" Position="-4000,2186,0" /> -->
+		
+		<!-- <SpawnUnit Name="uAttackLeader1"  Parent="uAttackLeader1" Template="PHC_A_Hades" Player="2" Position="-4000,2186,0" /> -->
+		
+		<!-- <SpawnUnit Name="uAttackLeader1"  Parent="uAttackLeader1" Template="SS_1_Martyr" Player="2" Position="-4000,2186,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="SS_1_Reaper" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="SS_1_Martyr" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="SS_1_Reaper" Player="2" Position="-4000,2286,0" />
+		<SpawnUnit Name="uAttackLeader2"  Parent="uAttackLeader2" Template="SS_1_Martyr" Player="2" Position="-4000,2186,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader2" Template="SS_1_Reaper" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader2" Template="SS_1_Martyr" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader2" Template="SS_1_Reaper" Player="2" Position="-4000,2286,0" />
+		<SpawnUnit Name="uAttackLeader3"  Parent="uAttackLeader3" Template="SS_1_Martyr" Player="2" Position="-4000,2186,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader3" Template="SS_1_Reaper" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader3" Template="SS_1_Martyr" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader3" Template="SS_1_Reaper" Player="2" Position="-4000,2286,0" /> -->
+		
+		<!-- <SpawnBuilding Name="sPointDefence1" Template="PHC_ArtilleryPost" Player="1" Position="-2800,1586,0" />
+		<SpawnBuilding Name="sPointDefence2" Template="PHC_ArtilleryPost" Player="1" Position="-2800,1436,0" />
+		<SpawnBuilding Name="sPointDefence3" Template="PHC_ArtilleryPost" Player="1" Position="-2800,1736,0" />
+		<SpawnBuilding Name="sPointDefence4" Template="PHC_ArtilleryPost" Player="1" Position="-2800,1886,0" /> -->
+		
+		<!--
+		<SpawnUnit Name="uAttackLeader1"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2186,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_A_Pan" Player="2" Position="-4000,2286,0" /> -->
 
+
+		
+		<!-- <SpawnUnit Name="uAttackLeader1"  Template="SS_2_Mauler" Player="2" Position="-4000,2086,0" />
+			<SpawnUnit Name="uAttacker1"  Parent="uAttackLeader1" Template="SS_2_Mauler" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker2"  Parent="uAttackLeader1" Template="SS_2_Mauler" Player="2" Position="-4000,2286,0" /> -->
+		<!--	<SpawnUnit Name="uAttacker8"  Parent="uAttackLeader1" Template="SS_1_Reaper" Player="2" Position="-4000,2186,0" />
+			<SpawnUnit Name="uAttacker9"  Parent="uAttackLeader1" Template="SS_1_Martyr" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker1"  Parent="uAttackLeader1" Template="SS_1_Martyr" Player="2" Position="-4000,2086,0" />
+			<SpawnUnit Name="uAttacker2"  Parent="uAttackLeader1" Template="SS_1_Martyr" Player="2" Position="-4000,2086,0" />
+			<SpawnUnit Name="uAttacker3"  Parent="uAttackLeader1" Template="SS_1_Martyr" Player="2" Position="-4000,2086,0" />
+			<SpawnUnit Name="uAttacker4"  Parent="uAttackLeader1" Template="SS_1_Reaper" Player="2" Position="-4000,2086,0" />
+			<SpawnUnit Name="uAttacker5"  Parent="uAttackLeader1" Template="SS_1_Reaper" Player="2" Position="-4000,2086,0" />
+			<SpawnUnit Name="uAttacker6"  Parent="uAttackLeader1" Template="SS_1_Reaper" Player="2" Position="-4000,2086,0" />
+			<SpawnUnit Name="uAttacker7"  Parent="uAttackLeader1" Template="SS_1_Reaper" Player="2" Position="-4000,2086,0" />
+			<SpawnUnit Name="uAttacker10"  Parent="uAttackLeader1" Template="SS_1_Reaper" Player="2" Position="-4000,2086,0" />
+			<SpawnUnit Name="uAttacker11"  Parent="uAttackLeader1" Template="SS_1_Reaper" Player="2" Position="-4000,2086,0" />
+			<SpawnUnit Name="uAttacker12"  Parent="uAttackLeader1" Template="SS_1_Martyr" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker13"  Parent="uAttackLeader1" Template="SS_1_Reaper" Player="2" Position="-4000,2086,0" /> -->
+			<!-- <SpawnUnit Name="uAttacker14"  Parent="uAttackLeader1" Template="SS_1_Martyr" Player="2" Position="-4000,2286,0" />
+			<SpawnUnit Name="uAttacker15"  Parent="uAttackLeader1" Template="SS_1_Reaper" Player="2" Position="-4000,2086,0" /> -->
+
+	
+		<!-- <SpawnBuilding Name="sPointDefence1" Template="PHC_Smarties" Player="1" Position="-2800,1586,0" />
+		
+		<SpawnUnit Name="uAttackLeader1"  Template="SS_1_Martyr" Player="2" Position="-4000,2086,0" />
+			<SpawnUnit Name="uAttacker1"  Parent="uAttackLeader1" Template="SS_1_Martyr" Player="2" Position="-4000,2086,0" />
+			<SpawnUnit Name="uAttacker2"  Parent="uAttackLeader1" Template="SS_1_Martyr" Player="2" Position="-4000,2086,0" />
+			<SpawnUnit Name="uAttacker3"  Parent="uAttackLeader1" Template="SS_1_Reaper" Player="2" Position="-4000,2086,0" />
+			<SpawnUnit Name="uAttacker4"  Parent="uAttackLeader1" Template="SS_1_Reaper" Player="2" Position="-4000,2086,0" />
+			-->
 	</Trigger>
 	
 	<Trigger Name="tTest2MoveCmd1" Type="Timer" Timer="1" Inactive="1" >
-		<AttackAttackMove Name="uAttackLeader1" Position="-2000,1086" />
+	<!--	<AttackAttackMove Name="uAttackLeader1" Position="-2000,1086" />
 		<AttackAttackMove Name="uAttackLeader2" Position="-2000,1086" />
 		<AttackAttackMove Name="uAttackLeader3" Position="-2000,1086" />
 		<AttackAttackMove Name="uAttackLeader4" Position="-2000,1086" />
 		<AttackAttackMove Name="uAttackLeader5" Position="-2000,1086" />
 		<AttackAttackMove Name="uAttackLeader6" Position="-2000,1086" />
 		<AttackAttackMove Name="uAttackLeader7" Position="-2000,1086" />
+		<AttackAttackMove Name="uAttackLeader8" Position="-2000,1086" /> -->
 		<!--<AttackAttackMove Name="uDefenceLeader" Position="-3000,1586" />-->
+		
+		<AttackAttackMove Name="uAttackLeader1" Position="-3000,1586" />
+		<AttackAttackMove Name="uAttackLeader2" Position="-3000,1586" />
+		<AttackAttackMove Name="uAttackLeader3" Position="-3000,1586" />
+		<AttackAttackMove Name="uAttackLeader4" Position="-3000,1586" />
+		<AttackAttackMove Name="uAttackLeader5" Position="-3000,1586" />
+		<AttackAttackMove Name="uAttackLeader6" Position="-3000,1586" />
+		<AttackAttackMove Name="uAttackLeader7" Position="-3000,1586" />
+		
 		<AttackAttackMove Name="uDefenceLeader" Position="-3400,1786" />
 		<AttackAttackMove Name="uDefenceLeader1" Position="-3000,1586" />
 		<AttackAttackMove Name="uDefenceLeader2" Position="-3000,1586" />
@@ -533,7 +599,15 @@ MISSING TESTS
 		<CaptureNearestNext Name="uDefenceLeader5" Repeat="0" />
 		<CaptureNearestNext Name="uDefenceLeader6" Repeat="0" />
 		<CaptureNearestNext Name="uDefenceLeader7" Repeat="0" />
-		<ActivateTrigger Target="tTest2MoveCmd2" />
+		<CaptureNearestNext Name="uAttackLeader" Repeat="0" />
+		<CaptureNearestNext Name="uAttackLeader1" Repeat="0" />
+		<CaptureNearestNext Name="uAttackLeader2" Repeat="0" />
+		<CaptureNearestNext Name="uAttackLeader3" Repeat="0" />
+		<CaptureNearestNext Name="uAttackLeader4" Repeat="0" />
+		<CaptureNearestNext Name="uAttackLeader5" Repeat="0" />
+		<CaptureNearestNext Name="uAttackLeader6" Repeat="0" />
+		<CaptureNearestNext Name="uAttackLeader7" Repeat="0" />
+		<!-- <ActivateTrigger Target="tTest2MoveCmd2" /> -->
 	</Trigger>
 	
 	<Trigger Name="tTest2MoveCmd2" Type="Timer" Timer="1" Inactive="1" >
@@ -552,11 +626,11 @@ MISSING TESTS
 	
 	<Trigger Name="tTest2Failure_DefenderUnitDestroyed" Type="Destruction" IsBuilding="0" Target="uDefenceLeader" NotOtherTrigger="tTest2CompleteEvent" Inactive="1" >
 		<ActivateTrigger Target="tTestFails" />
-		<Objective Name="oRetributorVsPhcArmyTest" String="BalanceTest_Obj_RetributorVsPhcArmyTest_Failed" SetCheck="false" />
+		<Objective Name="oSmartyVsSsFrigatesTest" String="BalanceTest_Obj_SmartyVsSsFriagtesTest" SetCheck="false" />
 	</Trigger>
 	
 	<Trigger Name="tTest2Succeeds" Type="Var" Var="vTestSucceeded_Probe" Operator="==" Value="1" NotOtherTrigger="tTest2CompleteEvent"  Inactive="1" >
-		<Objective Name="oRetributorVsPhcArmyTest" SetCheck="true" />
+		<Objective Name="oSmartyVsSsFrigatesTest" SetCheck="true" />
 	</Trigger>
 	
 	<Trigger Name="tTest2CompleteEvent" Type="Var" Var="vTestComplete_Signal" Operator="==" Value="1" Inactive="1" >
@@ -593,11 +667,11 @@ MISSING TESTS
 	</Trigger>
 
 	<Trigger Name="tTest3Fails" Type="Var" Var="vTestFailed_Probe" Operator="==" Value="1" NotOtherTrigger="tTest3Succeeds" Inactive="1" >
-		<Objective Name="ZeusVsMauler" String="BalanceTest_Obj_ZeusVsMauler_Failed" SetCheck="false" />
+		<Objective Name="oSmartyVsSsFrigates" String="BalanceTest_Obj_ZeusVsMauler_Failed" SetCheck="false" />
 	</Trigger>
 	
 	<Trigger Name="tTest3Succeeds" Type="Var" Var="vTestSucceeded_Probe" Operator="==" Value="1" NotOtherTrigger="tTest3Fails" Inactive="1" >
-		<Objective Name="ZeusVsMauler" SetCheck="true" />
+		<Objective Name="oSmartyVsSsFrigates" SetCheck="true" />
 	</Trigger>
 	
 	<Trigger Name="tTest3CompleteEvent" Type="Var" Var="vTestComplete_Signal" Operator="==" Value="1" Inactive="1" >

@@ -7,4 +7,6 @@ BalanceTest_Button_SentinalVsAthenaTest,"Sentinel Turrets vs Athenas"
 BalanceTest_Obj_SentinalVsAthenaTest,"Sentinel Turrets vs Athenas"
 BalanceTest_Obj_SentinalVsAthenaTest_Failed,"Sentinel Turrets vs Athenas (failed)"
 
-
+BalanceTest_Button_SmartyVsSsFriagtesTest,"Smarty Turrets vs PHC Frigates"
+BalanceTest_Obj_SmartyVsSsFriagtesTest,"Smarty Turret vs PHCFrigates"
+BalanceTest_Obj_SmartyVsSsFriagtesTest_Failed,"Smarty Turret vs PHC Frigates (failed)"

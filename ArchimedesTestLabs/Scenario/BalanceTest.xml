@@ -322,10 +322,10 @@ MISSING TESTS
 	
 	<Trigger Name="tTest3Spawn" Type="Timer" Timer="1" Inactive="1" >
 		<SpawnUnit Name="DefenceLeader" Template="SS_2_Mauler" Player="1" Position="-2000,1086,0" />
-		<SpawnUnit Name="Defender"  Parent="DefenceLeader" Template="SS_2_Mauler" Player="1" Position="-2000,1086,0" />
+			<SpawnUnit Name="Defender"  Parent="DefenceLeader" Template="SS_2_Mauler" Player="1" Position="-2000,1086,0" />
 		<SpawnUnit Name="AttackLeader"  Template="PHC_2_Zeus" Player="2" Position="-4000,2086,0" />
-		<SpawnUnit Name="Attacker"  Parent="AttackLeader" Template="PHC_2_Zeus" Player="2" Position="-4000,2086,0" />
-		<SpawnUnit Name="Attacker"  Parent="AttackLeader" Template="PHC_2_Zeus" Player="2" Position="-4000,2086,0" />
+			<SpawnUnit Name="Attacker"  Parent="AttackLeader" Template="PHC_2_Zeus" Player="2" Position="-4000,2086,0" />
+			<SpawnUnit Name="Attacker"  Parent="AttackLeader" Template="PHC_2_Zeus" Player="2" Position="-4000,2086,0" />
 		<AttackAttackMove Name="AttackLeader" Position="-3000,1586" />
 		<AttackAttackMove Name="DefenceLeader" Position="-3000,1586" />
 	</Trigger>
