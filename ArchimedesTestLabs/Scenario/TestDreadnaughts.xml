@@ -285,14 +285,43 @@ MISSING TESTS
 	</Trigger>
 	
 	<Trigger Name="tTest1Spawn" Type="Timer" Timer="1" Inactive="1" >
-		<!-- <SpawnUnit Name="uDefenceLeader" Template="PHC_3_Hyperion" Player="1" Position="-2500,1586,0" /> -->
-		<SpawnUnit Name="uDefenceLeader" Template="PHC_3_Hyperion" Player="1" Position="-2250,1386,0" />
+		<SpawnUnit Name="uDefenceLeader" Template="PHC_3_Hyperion" Player="1" Position="-2000,1086,0" />
+		<!-- <SpawnUnit Name="uDefenceLeader" Template="PHC_A_AirStratBomber" Player="1" Position="-2000,1086,0" /> -->
+		<!-- <SpawnUnit Name="uDefenceLeader" Template="SS_A_AirHarbinger" Player="1" Position="-2000,1086,0" /> -->
+		
+		<!-- <SpawnUnit Name="uAttackLeader1"  Template="PHC_3_Prometheus" player="2" Position="-4000,2086,0" /> -->
+		
+		<!-- <SpawnUnit Name="uAttackLeader1" Template="PHC_3_Prometheus" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="uAttackLeader2" Template="PHC_3_Prometheus" Player="2" Position="-4000,2086,0" />
+		<SpawnUnit Name="uAttackLeader3" Template="PHC_3_Prometheus" Player="2" Position="-4000,2086,0" /> -->
+		<!--	<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_2_Hera" Player="2" Position="-4000,2086,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_2_Hera" Player="2" Position="-4000,2086,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_2_Hera" Player="2" Position="-4000,2086,0" />
+
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_2_Hera" Player="2" Position="-4000,2086,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_2_Hera" Player="2" Position="-4000,2086,0" />
+			<!-- <SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_2_Hera" Player="2" Position="-4000,2086,0" /> -->
+		
+		<SpawnUnit Name="uAttackLeader1"  Template="PHC_2_Hera" player="0" Position="-4000,2086,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_2_Hera" player="0" Position="-4000,2086,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="PHC_2_Hera" player="0" Position="-4000,2086,0" />
+		<SpawnUnit Name="uAttackLeader2"  Template="PHC_2_Nemesis" player="0" Position="-4000,2086,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader2" Template="PHC_2_Nemesis" player="0" Position="-4000,2086,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader2" Template="PHC_2_Nemesis" player="0" Position="-4000,2086,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader2" Template="PHC_2_Nemesis" player="0" Position="-4000,2086,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader2" Template="PHC_2_Nemesis" player="0" Position="-4000,2086,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader2" Template="PHC_A_Instigator" player="0" Position="-4000,2086,0" />
+		<!-- <SpawnUnit Name="uAttackLeader3"  Template="PHC_2_Artemis" player="0" Position="-4000,2086,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader3" Template="PHC_2_Artemis" player="0" Position="-4000,2086,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader3" Template="PHC_2_Artemis" player="0" Position="-4000,2086,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader3" Template="PHC_1_Hermes" player="0" Position="-4000,2086,0" />
+		
 		<SpawnUnit Name="uDefenceLeader1" Template="PHC_2_Athena" Player="1" Position="-2000,1086,0" />
 			<SpawnUnit Name="uDefender"  Parent="uDefenceLeader1" Template="PHC_2_Athena" Player="1" Position="-2000,1086,0" />
 			<SpawnUnit Name="uDefender"  Parent="uDefenceLeader1" Template="PHC_2_Athena" Player="1" Position="-2000,1086,0" />
 			<SpawnUnit Name="uDefender"  Parent="uDefenceLeader1" Template="PHC_2_Athena" Player="1" Position="-2000,1086,0" />
-			<SpawnUnit Name="uDefender"  Parent="uDefenceLeader1" Template="PHC_1_Medic" Player="1" Position="-2000,1086,0" />
-		<SpawnUnit Name="uDefenceLeader2"  Template="PHC_2_Zeus" Player="1" Position="-2000,1086,0" />
+			<SpawnUnit Name="uDefender"  Parent="uDefenceLeader1" Template="PHC_1_Medic" Player="1" Position="-2000,1086,0" /> -->
+	<!--	<SpawnUnit Name="uDefenceLeader2"  Template="PHC_2_Zeus" Player="1" Position="-2000,1086,0" />
 			<SpawnUnit Name="uDefender"  Parent="uDefenceLeader2" Template="PHC_2_Zeus" Player="1" Position="-2000,1086,0" />
 			<SpawnUnit Name="uDefender"  Parent="uDefenceLeader2" Template="PHC_2_Zeus" Player="1" Position="-2000,1086,0" />
 			<SpawnUnit Name="uDefender"  Parent="uDefenceLeader2" Template="PHC_2_Zeus" Player="1" Position="-2000,1086,0" />
@@ -325,7 +354,7 @@ MISSING TESTS
 		<SpawnUnit Name="uDefenceLeader7"  Template="PHC_2_Apollo" Player="1" Position="-2000,1086,0" />
 			<SpawnUnit Name="uDefender"  Parent="uDefenceLeader7" Template="PHC_2_Apollo" Player="1" Position="-2000,1086,0" />
 			<SpawnUnit Name="uDefender"  Parent="uDefenceLeader7" Template="PHC_A_Instigator" Player="1" Position="-2000,1086,0" />
-			<SpawnUnit Name="uDefender"  Parent="uDefenceLeader7" Template="PHC_A_Instigator" Player="1" Position="-2000,1086,0" />
+			<SpawnUnit Name="uDefender"  Parent="uDefenceLeader7" Template="PHC_A_Instigator" Player="1" Position="-2000,1086,0" /> -->
 			
 			
 		<!-- <SpawnUnit Name="uDefenceLeader" Template="PHC_2_Hera" Player="1" Position="-2000,1086,0" />
@@ -364,7 +393,7 @@ MISSING TESTS
 			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="SS_1_Reaper" Player="2" Position="-4000,2086,0" />
 			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="SS_1_Reaper" Player="2" Position="-4000,2086,0" /> -->
 		
-		<SpawnUnit Name="uAttackLeader1"  Template="SS_2_Mauler" player="0" Position="-4000,2086,0" />
+		<!-- <SpawnUnit Name="uAttackLeader1"  Template="SS_2_Mauler" player="0" Position="-4000,2086,0" />
 			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="SS_2_Mauler" player="0" Position="-4000,2086,0" />
 			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="SS_2_Mauler" player="0" Position="-4000,2086,0" />
 			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader1" Template="SS_2_Mauler" player="0" Position="-4000,2086,0" />
@@ -379,10 +408,10 @@ MISSING TESTS
 			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader2" Template="SS_2_Avenger" player="0" Position="-4000,2086,0" />
 			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader2" Template="SS_2_Avenger" player="0" Position="-4000,2086,0" />
 			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader2" Template="SS_2_Avenger" player="0" Position="-4000,2086,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader2" Template="SS_1_Capacitor" player="0" Position="-4000,2086,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader2" Template="SS_1_Capacitor" player="0" Position="-4000,2086,0" /> -->
 		<!-- <SpawnUnit Name="uAttackLeader3"  Template="SS_2_Masochist" player="0" Position="-4000,2086,0" />
 			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader3" Template="SS_2_Masochist" player="0" Position="-4000,2086,0" /> -->
-		<SpawnUnit Name="uAttackLeader3"  Template="SS_2_Masochist" player="0" Position="-4000,2086,0" />
+		<!-- <SpawnUnit Name="uAttackLeader3"  Template="SS_2_Masochist" player="0" Position="-4000,2086,0" />
 			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader3" Template="SS_2_Masochist" player="0" Position="-4000,2086,0" />
 			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader3" Template="SS_2_Masochist" player="0" Position="-4000,2086,0" />
 			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader3" Template="SS_2_Masochist" player="0" Position="-4000,2086,0" />
@@ -443,7 +472,7 @@ MISSING TESTS
 			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader7" Template="SS_1_SkyCleanser" player="0" Position="-4000,2086,0" />
 			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader7" Template="SS_1_SkyCleanser" player="0" Position="-4000,2086,0" />
 			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader7" Template="SS_1_SkyCleanser" player="0" Position="-4000,2086,0" />
-			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader7" Template="SS_1_SkyCleanser" player="0" Position="-4000,2086,0" />
+			<SpawnUnit Name="uAttacker"  Parent="uAttackLeader7" Template="SS_1_SkyCleanser" player="0" Position="-4000,2086,0" /> -->
 
 	</Trigger>
 	
