@@ -3,11 +3,11 @@ ScenarioTestDreadnaughts_Title,Archimedes Test Labs: Dreadnaughts
 ScenarioTestDreadnaughts_Description,A specially designed scenario to test in-game balance
 ScenarioTestDreadnaughts_Synopsis,Archimedes evaluates the relative effectiveness of Dreadnaughts.
 
-BalanceTest_Button_HyperionVsSubArmyTest,"Hyperion vs Substrate Army"
-BalanceTest_Button_RetributorVsPhcArmyTest,"Retributor vs PHC Army"
+BalanceTest_Button_HyperionVsSubArmyTest,"Test 1"
+BalanceTest_Button_RetributorVsPhcArmyTest,"Test 2"
 
-BalanceTest_Obj_HyperionVsSubArmyTest,"Hyperion vs Substrate Army"
-BalanceTest_Obj_HyperionVsSubArmyTest_Failed,"Hyperion vs Substrate Army (failed)"
-BalanceTest_Obj_RetributorVsPhcArmyTest,"Retributor vs PHC Army"
-BalanceTest_Obj_RetributorVsPhcArmyTest_Failed,"Retributor vs PHC Army (failed)"
+BalanceTest_Obj_HyperionVsSubArmyTest,"Test 1"
+BalanceTest_Obj_HyperionVsSubArmyTest_Failed,"Test 1 (failed)"
+BalanceTest_Obj_RetributorVsPhcArmyTest,"Test 2"
+BalanceTest_Obj_RetributorVsPhcArmyTest_Failed,"Test 2 (failed)"
 

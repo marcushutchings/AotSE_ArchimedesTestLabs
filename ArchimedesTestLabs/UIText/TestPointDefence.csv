@@ -3,10 +3,10 @@ ScenarioTestPointDefence_Title,Archimedes Test Labs: Point Defence
 ScenarioTestPointDefence_Description,A specially designed scenario to test in-game balance
 ScenarioTestPointDefence_Synopsis,Archimedes evaluates the relative effectiveness of Point Defence.
 
-BalanceTest_Button_SentinalVsAthenaTest,"Sentinel Turrets vs Athenas"
-BalanceTest_Obj_SentinalVsAthenaTest,"Sentinel Turrets vs Athenas"
-BalanceTest_Obj_SentinalVsAthenaTest_Failed,"Sentinel Turrets vs Athenas (failed)"
+BalanceTest_Button_SentinalVsAthenaTest,"Test 1"
+BalanceTest_Obj_SentinalVsAthenaTest,"Test 1"
+BalanceTest_Obj_SentinalVsAthenaTest_Failed,"Test 1 (failed)"
 
-BalanceTest_Button_SmartyVsSsFriagtesTest,"Smarty Turrets vs PHC Frigates"
-BalanceTest_Obj_SmartyVsSsFriagtesTest,"Smarty Turret vs PHCFrigates"
-BalanceTest_Obj_SmartyVsSsFriagtesTest_Failed,"Smarty Turret vs PHC Frigates (failed)"
+BalanceTest_Button_SmartyVsSsFriagtesTest,"Test 2"
+BalanceTest_Obj_SmartyVsSsFriagtesTest,"Test 2"
+BalanceTest_Obj_SmartyVsSsFriagtesTest_Failed,"Test 2 (failed)"
